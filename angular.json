@@ -51,6 +51,12 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "jaeho": {
+              "fileReplacements": [{
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.jaeho.ts"
+                }]
             }
           }
         },
@@ -62,6 +68,9 @@
           "configurations": {
             "production": {
               "browserTarget": "swallow:build:production"
+            },
+            "jaeho": {
+              "browserTarget": "swallow:build:jaeho"
             }
           }
         },

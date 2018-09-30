@@ -1,0 +1,22 @@
+<mat-toolbar class="d-flex justify-content-between bg-primary text-white">
+
+  <h1>왕초보 앱 개발 - PWA CMS 프로젝트</h1>
+  <mat-icon>menu</mat-icon>
+
+</mat-toolbar>
+<h1></h1>
+<h3>프로젝트명: 제비</h3>
+<ul>
+  <li>
+    <h2><a href="/unleashed">Unleashed's Home</a></h2>
+  </li>
+  <li>
+    <h2><a routerLink="/unleashed/material">Unleashed's Material Page</a></h2>
+  </li>
+</ul>
+
+<ul>
+  <li class="text" *ngFor="let item of a.s.items | async">
+    {{item.name}}
+  </li>
+</ul>
