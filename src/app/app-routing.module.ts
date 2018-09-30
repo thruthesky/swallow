@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'unleashed',
     loadChildren: '../app/modules/unleashed.module#UnleashedModule'
+  },
+  {
+    path: 'jun',
+    loadChildren: '../app/modules/jun.module#JunModule'
   }
 ];
 
