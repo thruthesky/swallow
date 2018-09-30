@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'jun',
-    loadChildren: '../app/modules/jun.module#JunModule'
+    loadChildren: './pages/jun/jun.module#JunModule'
   }
 ];
 
