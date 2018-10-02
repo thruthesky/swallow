@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: 'unleashed',
-    loadChildren: '../app/modules/unleashed.module#UnleashedModule'
+    loadChildren: './pages/unleashed.module#UnleashedModule'
   },
   {
     path: 'jun',
