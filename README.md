@@ -2,6 +2,10 @@
 
 Powerful PWA CMS
 
+## Documents
+
+* [Git issues](https://github.com/thruthesky/swallow#issue-sh-boards?repos=swallow)
+
 ## Installation & Dependencies
 
 ### Npm modules
@@ -24,10 +28,20 @@ ng s -c jaeho
 
 ## Coding Style Guide
 
-* 100% Angular Coding Style Guide 를 따르고 본 지침을 따를 것.
+* Follow [Angular Coding Style Guide](https://angular.io/guide/styleguide) first.
+  100% Angular Coding Style Guide 를 따르고 본 지침을 따를 것.
 
-* SCSS 코드를 작성하지 말고 디자인 할 것.
-  * 단, Bootstrap 유틸리티 클래스 및
-  * 직접 유틸리티 클래스를 작성해서 사용 할 것.
-  * SCSS 유틸리티 클래스를 작성할 때 SMACSS 를 따를 것.
-  * 사유: CSS/SCSS 코드를 통해서 개발간의 의미 전달이 매우 어려움
+* Avoid writing css code by yourself. SCSS 코드를 작성하지 말고 디자인 할 것.
+  * Use Bootstrap utility classes. Bootstrap 유틸리티 클래스 및
+  * Or create your own utility classes. 직접 유틸리티 클래스를 작성해서 사용 할 것.
+  * Follow SMACSS. SCSS 유틸리티 클래스를 작성할 때 SMACSS 를 따를 것.
+  * Reason for this is to communicate with CSS code. 사유: CSS/SCSS 코드를 통해서 개발간의 의미 전달이 매우 어려움
+
+## Development Guide
+
+### Debugging
+
+* To enable `debug` mode, set `debug` to true on your environment.
+
+* In debug mode,
+  * You can use `a` as app service instance in dev consloe.
