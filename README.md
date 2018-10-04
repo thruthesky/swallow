@@ -66,3 +66,9 @@ ng s -c jaeho
 
 * In debug mode,
   * You can use `a` as app service instance in dev consloe.
+
+## History
+
+* window[a] added in global.
+* 2018-09-28 firebase and angular fire aded.
+* 2018-09-27 Angular material and Bootstrap v4 added.
