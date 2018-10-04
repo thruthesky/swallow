@@ -71,9 +71,17 @@ ng s -c jaeho
 
 * see [Angularfire Authentication](https://github.com/angular/angularfire2/blob/master/docs/auth/getting-started.md#5-getting-started-with-firebase-authentication)
 
+## Unit Testing
+
+* To do unit testing, inject `SwallowTestService` and call `run()` method.
+
+```` typescript
+constructor( private st: SwallowTestService) { st.run(); }
+````
 
 ## History
 
-* window[a] added in global.
+* 2018-10-04 adding `change` module.
+* 2018-10-04 window[a] added in global.
 * 2018-09-28 firebase and angular fire aded.
 * 2018-09-27 Angular material and Bootstrap v4 added.

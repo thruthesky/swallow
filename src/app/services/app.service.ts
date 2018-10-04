@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SwallowService } from './swallow.service';
+import { SwallowService } from './swallow/swallow.service';
 
 
 import { environment } from '../../environments/environment';
