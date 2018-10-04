@@ -67,6 +67,11 @@ ng s -c jaeho
 * In debug mode,
   * You can use `a` as app service instance in dev consloe.
 
+### User authentication - Register, Login, Update
+
+* see [Angularfire Authentication](https://github.com/angular/angularfire2/blob/master/docs/auth/getting-started.md#5-getting-started-with-firebase-authentication)
+
+
 ## History
 
 * window[a] added in global.
