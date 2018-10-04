@@ -18,7 +18,28 @@ $ npm i bootstrap
 
 * Add environment of your own with firebase configuration.
 
-### External Resources
+* Environment
+
+```` typescript
+export const environment = {
+  production: false, // production flag
+  debug: true, // for debugging. Should be false on production site.
+  firebase: { // firebase keys.
+    apiKey: '-----------------------------------',
+    authDomain: '-------------------------------',
+    databaseURL: '------------------------------',
+    projectId: '--------------------------------',
+    storageBucket: '----------------------------',
+    messagingSenderId: '------------------------'
+  }
+};
+````
+
+### Resources
+
+* Angular materials
+* Angular fire
+* Bootstrap v4. Only utiltiy and grid of Bootstrap v4 is included. You can not use all of the bootstrap v4.
 
 ## Run
 
