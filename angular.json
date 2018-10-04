@@ -72,6 +72,14 @@
                   "with": "src/environments/environment.bogz.ts"
                 }
               ]
+            },
+            "unleashed": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.unleashed.ts"
+                }
+              ]
             }
           }
         },
@@ -92,6 +100,9 @@
             },
             "bogz": {
               "browserTarget": "swallow:build:bogz"
+            },
+            "unleashed": {
+              "browserTarget": "swallow:build:unleashed"
             }
           }
         },

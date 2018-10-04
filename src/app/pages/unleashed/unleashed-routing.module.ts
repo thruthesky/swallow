@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UnleashedComponent } from './unleashed/unleashed.component';
-import { MaterialComponent } from './unleashed/material/material.component';
+import { UnleashedComponent } from './material/unleashed.component';
 
 const UNLEASHED_ROUTES: Routes = [
     {
         path: '',
         component: UnleashedComponent
-    },
-    {
-        path: 'material',
-        component: MaterialComponent
     }
 ];
 

@@ -4,9 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule, MatButtonModule, MatCheckboxModule, MatSelectModule, MatOptionModule} from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { UnleashedComponent } from './unleashed/unleashed.component';
+import { UnleashedComponent } from './material/unleashed.component';
 import { UnleashedRoutingModule } from './unleashed-routing.module';
-import { MaterialComponent } from './unleashed/material/material.component';
 
 @NgModule({
     exports: [],
@@ -22,8 +21,7 @@ import { MaterialComponent } from './unleashed/material/material.component';
         UnleashedRoutingModule
     ],
     declarations: [
-        UnleashedComponent,
-        MaterialComponent
+        UnleashedComponent
     ]
 })
 
