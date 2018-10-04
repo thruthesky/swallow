@@ -53,10 +53,20 @@
               "buildOptimizer": true
             },
             "jaeho": {
-              "fileReplacements": [{
+              "fileReplacements": [
+                {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.jaeho.ts"
-                }]
+                }
+              ]
+            },
+            "jun": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.jun.ts"
+                }
+              ]
             }
           }
         },
@@ -71,6 +81,9 @@
             },
             "jaeho": {
               "browserTarget": "swallow:build:jaeho"
+            },
+            "jun": {
+              "browserTarget": "swallow:build:jun"
             }
           }
         },
