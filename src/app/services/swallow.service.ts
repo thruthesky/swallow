@@ -6,16 +6,9 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SwallowService {
+  items: Observable<any[]>;
 
-    items: Observable<any[]>;
-
-    constructor(
-        public auth: AngularFireAuth,
-        public db: AngularFirestore
-    ) {
-        this.items = db.collection('items').valueChanges();
-    }
-
-
-
+  constructor(public auth: AngularFireAuth, public db: AngularFirestore) {
+    this.items = db.collection('items').valueChanges();
+  }
 }

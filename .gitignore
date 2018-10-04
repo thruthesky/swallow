@@ -38,3 +38,9 @@ testem.log
 .DS_Store
 Thumbs.db
 package-lock.json
+
+# Prettier
+.prettierignore
+.prettierrc
+prettiers.config.js
+.tslint.json

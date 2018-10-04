@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'jun',
     loadChildren: './pages/jun/jun.module#JunModule'
+  },
+  {
+    path: 'bogz',
+    loadChildren: './pages/bogz/bogz.module#BogzModule'
   }
 ];
 
@@ -20,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
