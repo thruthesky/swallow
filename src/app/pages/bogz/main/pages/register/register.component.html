@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-5">
+      <mat-card class="m-5">
+        <mat-card-header class="text-center">
+          <h2>Register</h2>
+        </mat-card-header>
+        <hr>
+        <form class="w100" (ngSubmit)="onSubmit(register)" #register="ngForm">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" ngModel>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" ngModel>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Register</button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
