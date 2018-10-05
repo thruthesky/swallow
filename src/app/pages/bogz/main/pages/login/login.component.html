@@ -9,12 +9,19 @@
         <form class="w100" (ngSubmit)="onSubmit(login)" #login="ngForm">
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput type="email" name="email" ngModel>
+            <input matInput type="email" name="email" ngModel required>
+            <mat-error>
+              <p>please enter valid email</p>
+            </mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput type="password" name="password" ngModel>
+            <input matInput type="password" name="password" ngModel required minlength="6">
+            <mat-error>
+              <p>minimum of 6 characters</p>
+            </mat-error>
           </mat-form-field>
+          <br>
           <button mat-raised-button color="primary" type="submit">Login</button>
         </form>
       </mat-card>
