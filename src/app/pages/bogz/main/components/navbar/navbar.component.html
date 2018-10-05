@@ -1,0 +1,10 @@
+<nav mat-tab-nav-bar backgroundColor="primary" color="primary" disableRipple="true">
+  <div class="container">
+    <a mat-tab-link *ngFor="let link of links" [routerLink]="[link.path]" routerLinkActive #rla="routerLinkActive"
+      [routerLinkActiveOptions]="{exact:
+      true}" [active]="rla.isActive">
+      <mat-icon class="m-1"> {{ link.icon }} </mat-icon>
+      {{ link.name }}
+    </a>
+  </div>
+</nav>
