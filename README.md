@@ -2,9 +2,10 @@
 
 Powerful PWA CMS
 
-## Documents
+## Documents & References
 
 * [Git issues](https://github.com/thruthesky/swallow#issue-sh-boards?repos=swallow)
+* [Firebase Firestore Security Rules](https://firebase.google.com/docs/firestore/security/get-started)
 
 ## Installation & Dependencies
 
