@@ -13,9 +13,11 @@ import { NavbarComponent } from './main/components/navbar/navbar.component';
 import { HomePageComponent } from './main/pages/home-page/home-page.component';
 import { AboutPageComponent } from './main/pages/about-page/about-page.component';
 import { ContactPageComponent } from './main/pages/contact-page/contact-page.component';
+import { AdminPageComponent } from './main/pages/admin-page/admin-page.component';
+import { DashPageComponent } from './main/pages/dash-page/dash-page.component';
 
 @NgModule({
-  declarations: [MainComponent, LoginComponent, RegisterComponent, FooterComponent, NavbarComponent, HomePageComponent, AboutPageComponent, ContactPageComponent],
+  declarations: [MainComponent, LoginComponent, RegisterComponent, FooterComponent, NavbarComponent, HomePageComponent, AboutPageComponent, ContactPageComponent, AdminPageComponent, DashPageComponent],
   imports: [CommonModule, FormsModule, MaterialModule, BogzRouting]
 })
 export class BogzModule {}
