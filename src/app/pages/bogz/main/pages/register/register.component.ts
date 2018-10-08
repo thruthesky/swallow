@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   async onSubmit(form: FormGroup) {
-    this.auth.register(form.value.email, form.value.password);
+    await this.auth.register(form.value);
     await form.reset();
   }
 }

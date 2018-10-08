@@ -7,10 +7,28 @@
         </mat-card-header>
         <hr>
         <form class="w100" (ngSubmit)="onSubmit(register)" #register="ngForm">
+
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" name="name" ngModel required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput type="text" name="username" ngModel required>
+          </mat-form-field>
+
           <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput type="email" name="email" ngModel required>
           </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Contact Number</mat-label>
+            <input matInput type="tel" name="contact" pattern="[0-9]{4} - [0-9]{3} - [0-9]{4}" ngModel max="11"
+              required>
+          </mat-form-field>
+
           <mat-form-field>
             <mat-label>Password</mat-label>
             <input matInput type="password" name="password" ngModel required minlength="6">
@@ -18,7 +36,14 @@
               <p>minimum of 6 characters</p>
             </mat-error>
           </mat-form-field>
-          <button mat-raised-button color="primary" type="submit">Register</button>
+
+          <mat-radio-group name="gender" ngModel required>
+            <mat-label>Gender</mat-label>
+            <mat-radio-button value="M" class="ml-2"> Male </mat-radio-button>
+            <mat-radio-button value="F" class="ml-2"> Female </mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <button mat-raised-button color="primary" class="mt-3" type="submit">Register</button>
         </form>
       </mat-card>
     </div>
