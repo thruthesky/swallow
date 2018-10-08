@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
+    debug: false,
     firebase: {
         // tslint:disable-next-line:quotemark
         apiKey: "AIzaSyAG_4KvXChFX-Q_9y2FUQDbqAjVuKue4XQ",

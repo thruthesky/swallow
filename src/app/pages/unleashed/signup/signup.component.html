@@ -1,0 +1,29 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="email" [(ngModel)]="user.email" name="email">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="password" [(ngModel)]="user.password" name="password">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="nickname" [(ngModel)]="user.nickname" name="nickname">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-select placeholder="gender" [(ngModel)]="user.gender" name="gender">
+      <mat-option *ngFor="let gender of genders" [value]="gender.value">
+        {{gender.disp}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="birthday" placeholder="Choose a date" [(ngModel)]="user.birthday" name="birthday">
+    <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+    <mat-datepicker #birthday disabled="false"></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="mobile" inputType="text" [(ngModel)]="user.mobile" name="mobile">
+  </mat-form-field>
+  <div class="button-row">
+    <button mat-raised-button (click)="signup()">Signup</button>
+  </div>
+</form>
