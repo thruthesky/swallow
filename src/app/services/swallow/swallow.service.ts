@@ -34,7 +34,7 @@ export class SwallowService {
   }
 
   get colUserProfile() {
-    return this.db.collection('user-profile');
+    return this.db.collection('userProfile');
   }
   docUserProfile(id: string) {
     return this.colUserProfile.doc(id);
@@ -68,7 +68,7 @@ export class SwallowService {
     delete userData['email'];
     delete userData['password'];
 
-    await this.db.collection('user-profile').doc(re.user.uid).set(userData);
+    await this.colUserProfile.doc(re.user.uid).set(userData);
 
     return re.user;
   }

@@ -68,6 +68,14 @@ ng s -c jaeho
 * In debug mode,
   * You can use `a` as app service instance in dev consloe.
 
+### Security Rules
+
+* To set firestore security rules, plesae run the following
+
+```` sh
+firebase deploy --only firestore:rules
+````
+
 ### User authentication - Register, Login, Update
 
 * see [Angularfire Authentication](https://github.com/angular/angularfire2/blob/master/docs/auth/getting-started.md#5-getting-started-with-firebase-authentication)
