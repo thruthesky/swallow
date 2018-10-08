@@ -8,15 +8,7 @@ import { SwallowTestService } from '../../services/swallow/swallow.test.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  constructor(public a: AppService, public st: SwallowTestService) {}
 
-  constructor(
-    public a: AppService,
-    public st: SwallowTestService
-  ) {
-    st.run();
-  }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
