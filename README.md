@@ -90,6 +90,7 @@ constructor( private st: SwallowTestService) { st.run(); }
 
 ## History
 
+* 2018-10-08 `firebase cli` and `firebaes project` has been added & initilized.
 * 2018-10-04 adding `change` module.
 * 2018-10-04 window[a] added in global.
 * 2018-09-28 firebase and angular fire aded.
