@@ -2,11 +2,11 @@ export const environment = {
   production: true,
   debug: false,
   firebase: {
-    apiKey: 'AIzaSyCK3-LDHIsFH2qWJOh8t7N3LtoqdCLROvY',
-    authDomain: 'swallow-470cb.firebaseapp.com',
-    databaseURL: 'https://swallow-470cb.firebaseapp.com',
-    projectId: 'swallow-470cb',
-    storageBucket: 'swallow-470cb.appspot.com',
-    messagingSenderId: '183775687648'
+    apiKey: 'AIzaSyDI3WQqTr2m98ym8Dp21rP0FR1KTsdZqs0',
+    authDomain: 'bogz-swallow.firebaseapp.com',
+    databaseURL: 'https://bogz-swallow.firebaseio.com',
+    projectId: 'bogz-swallow',
+    storageBucket: 'bogz-swallow.appspot.com',
+    messagingSenderId: '1062574391157'
   }
 };
