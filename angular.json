@@ -57,6 +57,14 @@
                 }
               ]
             },
+            "julz": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.julz.ts"
+                }
+              ]
+            },
             "jun": {
               "fileReplacements": [
                 {
@@ -94,6 +102,9 @@
             },
             "jaeho": {
               "browserTarget": "swallow:build:jaeho"
+            },
+            "julz": {
+              "browserTarget": "swallow:build:julz"
             },
             "jun": {
               "browserTarget": "swallow:build:jun"
