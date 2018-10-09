@@ -48,3 +48,6 @@ prettiers.config.js
 # Firebase
 functions/
 public/
+
+# Bogz Assets
+src/app/pages/bogz/main/assets/

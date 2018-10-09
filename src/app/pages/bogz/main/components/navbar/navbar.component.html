@@ -14,8 +14,8 @@
       <button mat-button> {{ 'Username' }} </button>
 
       <mat-menu #more="matMenu" overlapTrigger="false">
-        <button mat-menu-item> Login</button>
-        <button mat-menu-item> Login</button>
+        <button mat-menu-item [routerLink]="['./admin']"> Admin </button>
+        <button mat-menu-item (mousedown)="loggedout()"> Logout </button>
       </mat-menu>
 
       <button mat-icon-button [matMenuTriggerFor]="more" class="align-self-center">
