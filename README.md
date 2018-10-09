@@ -6,6 +6,7 @@ Powerful PWA CMS
 
 * [Git issues](https://github.com/thruthesky/swallow#issue-sh-boards?repos=swallow)
 * [Firebase Firestore Security Rules](https://firebase.google.com/docs/firestore/security/get-started)
+* [Firebase CMS](https://github.com/thruthesky/firebase-cms)
 
 ## Installation & Dependencies
 
@@ -79,6 +80,16 @@ firebase deploy --only firestore:rules
 ### User authentication - Register, Login, Update
 
 * see [Angularfire Authentication](https://github.com/angular/angularfire2/blob/master/docs/auth/getting-started.md#5-getting-started-with-firebase-authentication)
+
+
+## Database Struecture
+
+### Firestore admin structure
+
+```` text
+swallow/{domain}/settings/admin/{ email: 'admin email adress '}
+````
+
 
 ## Unit Testing
 
