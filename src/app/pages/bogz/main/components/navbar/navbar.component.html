@@ -1,25 +1,33 @@
 <nav mat-tab-nav-bar backgroundColor="primary">
+
   <div class="container d-flex">
+
     <a mat-tab-link *ngFor="let link of links" [routerLink]="[link.path]" routerLinkActive [routerLinkActiveOptions]="{exact: true}"
       #nav="routerLinkActive" [active]="nav.isActive">
       {{ link.name }}
     </a>
+
+    <span class="spacer"></span>
+
     <div class="d-inline-flex text-white" *ngIf="isLogged; else logout">
+
       <button mat-button> {{ 'Username' }} </button>
+
       <mat-menu #more="matMenu" overlapTrigger="false">
         <button mat-menu-item> Login</button>
         <button mat-menu-item> Login</button>
       </mat-menu>
-      <button mat-icon-button [matMenuTriggerFor]="more" class="mr-5">
+
+      <button mat-icon-button [matMenuTriggerFor]="more" class="align-self-center">
         <mat-icon>more_vert</mat-icon>
       </button>
+
     </div>
 
     <ng-template #logout>
-      <button mat-button class="mr-5 text-white" [routerLink]="['/bogz/login']"> Login </button>
+      <button mat-button class="text-white" [routerLink]="['/bogz/login']"> Login </button>
     </ng-template>
 
   </div>
-
 
 </nav>
