@@ -5,12 +5,18 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { auth } from 'firebase/app';
 
+
+/**
+ * Database root collection name
+ */
+export const DATABASE_COLLECTION = 'swallow';
 export const ERROR_EMPTY_INPUT = -1;
 export const ERROR_EMPTY_EMAIL = 'empty-email';
 export const ERROR_EMPTY_PASSWORD = 'empty-password';
 export const ERROR_LOGIN_FIRST = 'login-first';
 
-export class User {
+export interface User {
+  uid?: string;
   email?: string;
   password?: string;
   nickname?: string;
@@ -19,9 +25,16 @@ export class User {
   mobile?: string;
 }
 
+export interface Options {
+  domain: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SwallowService {
 
+  private options: Options = {
+    domain: 'default-domain'
+  };
   constructor(
     public auth: AngularFireAuth,
     public db: AngularFirestore
@@ -29,15 +42,21 @@ export class SwallowService {
 
   }
 
+  setOptions(options: Options) {
+    Object.assign( this.options, options);
+  }
   error(code, message) {
     return { code: code, message: message };
   }
 
-  get colUserProfile() {
-    return this.db.collection('userProfile');
+  get docDomain() {
+    return this.db.collection( DATABASE_COLLECTION ).doc( this.options.domain );
   }
-  docUserProfile(id: string) {
-    return this.colUserProfile.doc(id);
+  get colUser() {
+    return this.docDomain.collection('users');
+  }
+  docUser(id: string) {
+    return this.colUser.doc(id);
   }
 
   /**
@@ -64,11 +83,17 @@ export class SwallowService {
     const re: firebase.auth.UserCredential = await this.auth.auth.createUserWithEmailAndPassword(user.email, user.password);
 
 
-    const userData = Object.assign({}, user);
+    const userData: User = Object.assign({}, user);
     delete userData['email'];
     delete userData['password'];
+    
+    userData.uid = re.user.uid;
 
-    await this.colUserProfile.doc(re.user.uid).set(userData);
+    const ref = this.colUser.doc( userData.uid );
+    console.log('ref: ', ref.ref.path);
+    
+    console.log('userData: ', userData);
+    await ref.set(userData);
 
     return re.user;
   }
@@ -94,13 +119,20 @@ export class SwallowService {
    * Only specified properties will be updated and whole user profile data will be returned.
    * @param user User profile data
    * @return whole user profile data from firestore /user-profile doc.
+   * 
+   * @example how to handle error
+   *    const e = await this.s.docUser(otherUid).update({ gender: 'U' }).catch( e => e );
    */
   async userUpdate(user: User): Promise<User> {
     if (!this.auth.auth.currentUser) {
       throw this.error(ERROR_LOGIN_FIRST, 'User is not logged in');
     }
-    await this.docUserProfile(this.auth.auth.currentUser.uid).update(user);
-    return <any>this.docUserProfile(this.auth.auth.currentUser.uid).ref.get()
+
+    /**
+     * @desc error concern. if update fails, it will just throw out of the function!!
+     */
+    await this.docUser(this.currentUser.uid).update(user);
+    return <any>this.docUser(this.currentUser.uid).ref.get()
       .then(doc => {
         if (doc.exists) {
           return doc.data();
@@ -108,6 +140,11 @@ export class SwallowService {
           return null;
         }
       })
+  }
+
+
+  get currentUser(): firebase.UserInfo {
+    return this.auth.auth.currentUser;
   }
 }
 
