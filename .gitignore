@@ -47,3 +47,4 @@ prettiers.config.js
 
 # Firebase
 functions/
+public/
