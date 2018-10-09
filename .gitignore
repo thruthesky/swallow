@@ -44,3 +44,6 @@ package-lock.json
 .prettierrc
 prettiers.config.js
 .tslint.json
+
+# Firebase
+functions/
