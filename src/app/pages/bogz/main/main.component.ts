@@ -10,6 +10,6 @@ export class MainComponent implements OnInit {
   constructor(public authTest: AuthTestService) {}
 
   ngOnInit() {
-    this.authTest.run();
+    // this.authTest.run();
   }
 }
