@@ -4,8 +4,7 @@
       #nav="routerLinkActive" [active]="nav.isActive">
       {{ link.name }}
     </a>
-
-    <div class="d-inline-flex text-white" *ngIf="login; else logout">
+    <div class="d-inline-flex text-white" *ngIf="isLogged; else logout">
       <button mat-button> {{ 'Username' }} </button>
       <mat-menu #more="matMenu" overlapTrigger="false">
         <button mat-menu-item> Login</button>

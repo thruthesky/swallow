@@ -13,8 +13,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     const url = state.url;
-    console.log(next);
-    console.log(state);
     return this.checkUser(url);
   }
 
@@ -28,12 +26,5 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/bogz/login']);
 
     return false;
-  }
-
-  checkRole(url: ActivatedRouteSnapshot) {
-    if (url.routeConfig.path === 'admin') {
-      const data = this.auth.docUserInfo(this.auth.afAuth.auth.currentUser.uid);
-      console.log(data);
-    }
   }
 }

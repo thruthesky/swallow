@@ -24,6 +24,8 @@ export class AuthService {
   redirectUrl: string;
   constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {}
 
+  isLoggin = false;
+
   check(user: UserModel) {
     if (user === void 0) {
       console.log(`No user information`);
@@ -55,7 +57,7 @@ export class AuthService {
     this.check(user);
 
     const credential = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-
+    this.isLoggin = true;
     return credential.user;
   }
 
@@ -76,7 +78,7 @@ export class AuthService {
     delete userInfo.password;
 
     await this.docUserInfo(response.user.uid).set(userInfo);
-
+    this.isLoggin = true;
     return response.user;
   }
 

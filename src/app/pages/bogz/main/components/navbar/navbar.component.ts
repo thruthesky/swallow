@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -13,14 +13,8 @@ export class NavbarComponent implements OnInit {
     { name: 'Contact', icon: 'phone', path: './contact' }
   ];
   constructor(public auth: AuthService) {}
-
-  login = this.auth.afAuth.auth.currentUser;
+  @Input()
+  isLogged = false;
 
   ngOnInit() {}
-
-  isLoggedIn() {
-    if (this.auth.afAuth.auth.currentUser) {
-      return true;
-    }
-  }
 }
