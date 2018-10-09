@@ -20,6 +20,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate([this.auth.redirectUrl]);
     }
 
-    this.router.navigate(['/bogz/admin']);
+    this.router.navigate(['/bogz']);
   }
 }

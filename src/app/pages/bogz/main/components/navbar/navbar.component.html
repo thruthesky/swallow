@@ -1,10 +1,26 @@
-<nav mat-tab-nav-bar backgroundColor="primary" color="primary" disableRipple="true">
-  <div class="container">
-    <a mat-tab-link *ngFor="let link of links" [routerLink]="[link.path]" routerLinkActive #rla="routerLinkActive"
-      [routerLinkActiveOptions]="{exact:
-      true}" [active]="rla.isActive">
-      <mat-icon class="m-1"> {{ link.icon }} </mat-icon>
+<nav mat-tab-nav-bar backgroundColor="primary">
+  <div class="container d-flex">
+    <a mat-tab-link *ngFor="let link of links" [routerLink]="[link.path]" routerLinkActive [routerLinkActiveOptions]="{exact: true}"
+      #nav="routerLinkActive" [active]="nav.isActive">
       {{ link.name }}
     </a>
+
+    <div class="d-inline-flex text-white" *ngIf="login; else logout">
+      <button mat-button> {{ 'Username' }} </button>
+      <mat-menu #more="matMenu" overlapTrigger="false">
+        <button mat-menu-item> Login</button>
+        <button mat-menu-item> Login</button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="more" class="mr-5">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+
+    <ng-template #logout>
+      <button mat-button class="mr-5 text-white" [routerLink]="['/bogz/login']"> Login </button>
+    </ng-template>
+
   </div>
+
+
 </nav>
