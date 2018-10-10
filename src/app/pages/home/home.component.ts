@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../services/app.service';
-import { SwallowTestService } from '../../services/swallow/swallow.test.service';
 
 @Component({
   selector: 'app-home',
@@ -10,5 +9,16 @@ import { SwallowTestService } from '../../services/swallow/swallow.test.service'
 export class HomeComponent implements OnInit {
   constructor(public a: AppService, public st: SwallowTestService) {}
 
+<<<<<<< HEAD
   ngOnInit() {}
+=======
+  constructor(
+    public a: AppService
+  ) {
+  }
+
+  ngOnInit() {
+  }
+
+>>>>>>> 9d28fa6f591f721767edc3f16e11248a5e544a76
 }

@@ -1,0 +1,137 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+  
+    function isLogin() {
+    	return request.auth != null;
+    }
+    function isMyDocument() {
+    	return resource.data.uid == request.auth.uid
+    }
+    function isDomainAdmin(domain) {
+      return isLogin()
+        && get(/databases/$(database)/documents/swallow/$(domain)/settings/admin).data.email == request.auth.token.email;
+    }
+    
+    function domainPostLikeCreateValidator(domain, post, collection) {
+    	return isLogin()
+      	&& !exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)/$(collection)/$(request.auth.uid));
+    }
+    
+    function domainPostLikeDeleteValidator(domain, post, collection) {
+    	return isLogin()
+      	&& exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)/$(collection)/$(request.auth.uid));
+    }
+  
+    function domainCommentLikeCreateValidator(domain, post, comment, collection) {
+    	return isLogin()
+      	&& !exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)/comments/$(comment)/$(collection)/$(request.auth.uid));
+    }
+    function domainCommentLikeDeleteValidator(domain, post, comment, collection) {
+    	return isLogin()
+      	&& exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)/comments/$(comment)/$(collection)/$(request.auth.uid));
+    }
+    
+    // settings collection
+    match /swallow/{domain}/settings {
+    	match /admin {
+      	allow read: if false;
+        allow create: if !exists(/databases/$(database)/documents/swallow/$(domain)/settings/admin);
+        allow update: if isDomainAdmin( domain );
+      }
+      // Not necessary to check if the system is installed or not.
+      // match /installed {
+      // 	allow read: if true;
+      //   allow create: if !exists(/databases/$(database)/documents/swallow/$(domain)/settings/installed);
+      // }
+      match /{document=**} {
+      	allow read: if true;
+        allow write: if isDomainAdmin( domain );
+      }
+    }
+    
+    // user collection (new rule)
+    match /swallow/{domain}/users/{user} {
+    	allow read: if isMyDocument();
+      allow create: if isLogin();
+      allow update: if isMyDocument();
+      allow delete: if isMyDocument();
+    }
+    
+
+    // category collection (new urle)
+    match /swallow/{domain}/categories/{category} {
+    	allow read: if true;
+      allow create: if isDomainAdmin(domain);
+      allow update: if isDomainAdmin(domain);
+      allow delete: if isDomainAdmin(domain);
+    }
+    
+    // post collection ( new rule )
+    match /swallow/{domain}/posts/{post} {
+      allow get: if true;
+      allow list: if request.query.limit <= 50;
+      allow create: if isLogin()
+        && request.resource.data.keys().hasAll(['category', 'uid'])
+        && ! exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)) // post must not exists to create.
+        && exists(/databases/$(database)/documents/swallow/$(domain)/categories/$(request.resource.data.category)) // category must exist to create.
+        && request.resource.data.uid == request.auth.uid;
+      allow update: if isLogin() && isMyDocument()
+	      && exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)) // post must exists to edit.
+        && exists(/databases/$(database)/documents/swallow/$(domain)/categories/$(request.resource.data.category)) // category must exist to edit.
+      // allow delete: if postDeleteValidator();
+      
+      match /likes {
+        match /count {
+        	allow read, write: if true;
+        }
+      	match /{like} {
+          allow read: if true;
+          allow create: if domainPostLikeCreateValidator( domain, post, 'likes' );
+          allow delete: if domainPostLikeDeleteValidator( domain, post, 'likes' );
+        }
+      }   
+      match /dislikes {
+        match /count {
+        	allow read, write: if true;
+        }
+      	match /{like} {
+          allow read: if true;
+          allow create: if domainPostLikeCreateValidator( domain, post, 'dislikes' );
+          allow delete: if domainPostLikeDeleteValidator( domain, post, 'dislikes' );
+        }
+      }
+      match /comments {
+        match /{comment} {
+        	allow read: if true;
+        	allow create: if isLogin();
+          allow update: if isLogin() && isMyDocument();                
+          match /likes {
+            match /count {
+              allow read, write: if true;
+            }
+            match /{like} {
+              allow read: if true;
+              allow create: if domainCommentLikeCreateValidator( domain, post, comment, 'likes' );
+              allow delete: if domainCommentLikeDeleteValidator( domain, post, comment, 'likes' );
+            }
+          }   
+          match /dislikes {
+            match /count {
+              allow read, write: if true;
+            }
+            match /{like} {
+              allow read: if true;
+              allow create: if domainCommentLikeCreateValidator( domain, post, comment, 'dislikes' );
+              allow delete: if domainCommentLikeDeleteValidator( domain, post, comment, 'dislikes' );
+            }
+          }
+        }
+      }
+    }
+    // grant read, write if the thumbnails are under the user's folder.
+    match /temp/thumbnails/swallow/{domain}/{uid}/{document=**} {
+    	allow read,write: if request.auth.uid == uid;
+    }
+  }
+}

@@ -7,6 +7,7 @@
 
 # dependencies
 /node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -46,8 +47,14 @@ prettiers.config.js
 .tslint.json
 
 # Firebase
+<<<<<<< HEAD
 functions/
 public/
 
 # Bogz Assets
 src/app/pages/bogz/main/assets/
+=======
+functions
+src/app/pages/bogz/main/assets
+public
+>>>>>>> 9d28fa6f591f721767edc3f16e11248a5e544a76

@@ -2,9 +2,11 @@
 
 Powerful PWA CMS
 
-## Documents
+## Documents & References
 
 * [Git issues](https://github.com/thruthesky/swallow#issue-sh-boards?repos=swallow)
+* [Firebase Firestore Security Rules](https://firebase.google.com/docs/firestore/security/get-started)
+* [Firebase CMS](https://github.com/thruthesky/firebase-cms)
 
 ## Installation & Dependencies
 
@@ -67,9 +69,27 @@ ng s -c jaeho
 * In debug mode,
   * You can use `a` as app service instance in dev consloe.
 
+### Security Rules
+
+* To set firestore security rules, plesae run the following
+
+```` sh
+firebase deploy --only firestore:rules
+````
+
 ### User authentication - Register, Login, Update
 
 * see [Angularfire Authentication](https://github.com/angular/angularfire2/blob/master/docs/auth/getting-started.md#5-getting-started-with-firebase-authentication)
+
+
+## Database Struecture
+
+### Firestore admin structure
+
+```` text
+swallow/{domain}/settings/admin/{ email: 'admin email adress '}
+````
+
 
 ## Unit Testing
 
@@ -81,6 +101,7 @@ constructor( private st: SwallowTestService) { st.run(); }
 
 ## History
 
+* 2018-10-08 `firebase cli` and `firebaes project` has been added & initilized.
 * 2018-10-04 adding `change` module.
 * 2018-10-04 window[a] added in global.
 * 2018-09-28 firebase and angular fire aded.

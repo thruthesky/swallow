@@ -1,0 +1,26 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+// Required
+// 아래의 3 개의 import 는 필수이며, 전체 용량은 차지 하지 않는다.
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+/**
+* Adding `box-sizing` Reboot's page default.
+* So, the paddings and borders will not affect the breaks.
+* Bootstrap 에서 grid 를 할 때, padding 을 주어도 grid breakpoint 와 width 에 변화가 없도록 하기 위해서 모든 HTML 요소에 box-size: border-box 를 주고 있다.
+*/
+.container,
+.container-fluid {
+   *,
+   *::before,
+   *::after {
+       box-sizing: border-box;
+   }
+}
+
+// Optional
+// without optimization. it's 250KB.
+// with optimization. it's 56KB. when it is zipped it's like 7KB.
+@import "~node_modules/bootstrap/scss/grid";
+@import "~node_modules/bootstrap/scss/utilities";
