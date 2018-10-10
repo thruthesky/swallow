@@ -1,0 +1,30 @@
+<header>
+  <h1>Register</h1>
+</header>
+
+<main>
+  <form (ngSubmit)=" onSubmit() ">
+    <div>
+      Email:
+      <input name="email" [(ngModel)]="form.email" *ngIf=" f.isLoggedOut ">
+      <span *ngIf=" f.isLoggedIn ">{{ form.email }}</span>
+    </div>
+
+    <div *ngIf=" f.isLoggedOut ">
+        Password:
+        <input name="password" [(ngModel)]="form.password">
+      </div>
+      <div>
+        Name:
+        <input name="name" [(ngModel)]="form.name">
+      </div>
+      <div>
+        Mobile
+        <input name="mobile" [(ngModel)]="form.mobile">
+      </div>
+
+    <div>
+      <button type="submit">Register</button>
+    </div>
+  </form>
+</main>

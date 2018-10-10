@@ -1,0 +1,16 @@
+<header class="bg-light">
+  <nav>
+    <a class="d-inline-block p-3" routerLink='/'>Home</a>
+    <a class="d-inline-block p-3" routerLink='/register' *ngIf=" f.isLoggedOut ">Register</a>
+    <a class="d-inline-block p-3" routerLink='/login' *ngIf=" f.isLoggedOut ">Login</a> 
+    <a class="d-inline-block p-3" routerLink='/' (click)=" f.userLogout() " *ngIf=" f.isLoggedIn ">Logout</a> 
+    <a class="d-inline-block p-3" routerLink='/profile' *ngIf=" f.isLoggedIn ">Profile Update</a>
+    <a class="d-inline-block p-3" routerLink="/menu">Menu</a>
+    
+
+    <span *ngIf=" f.isLoggedIn ">
+      Welcome, {{ f.currentUser.email }}
+    </span>
+  </nav>
+</header>
+<router-outlet></router-outlet>

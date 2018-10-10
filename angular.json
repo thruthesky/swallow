@@ -22,7 +22,10 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
@@ -126,14 +129,22 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -158,7 +169,132 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "jaeho": {
+      "root": "projects/jaeho/",
+      "sourceRoot": "projects/jaeho/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/jaeho",
+            "index": "projects/jaeho/src/index.html",
+            "main": "projects/jaeho/src/main.ts",
+            "polyfills": "projects/jaeho/src/polyfills.ts",
+            "tsConfig": "projects/jaeho/tsconfig.app.json",
+            "assets": [
+              "projects/jaeho/src/favicon.ico",
+              "projects/jaeho/src/assets"
+            ],
+            "styles": [
+              "projects/jaeho/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/jaeho/src/environments/environment.ts",
+                  "with": "projects/jaeho/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "jaeho:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "jaeho:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "jaeho:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/jaeho/src/test.ts",
+            "polyfills": "projects/jaeho/src/polyfills.ts",
+            "tsConfig": "projects/jaeho/tsconfig.spec.json",
+            "karmaConfig": "projects/jaeho/karma.conf.js",
+            "styles": [
+              "projects/jaeho/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/jaeho/src/favicon.ico",
+              "projects/jaeho/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/jaeho/tsconfig.app.json",
+              "projects/jaeho/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "jaeho-e2e": {
+      "root": "projects/jaeho-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/jaeho-e2e/protractor.conf.js",
+            "devServerTarget": "jaeho:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "jaeho:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/jaeho-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

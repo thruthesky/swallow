@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { SwallowService } from '../../../services/swallow/swallow.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { FirehouseService } from 'firehouse';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public swallowService: SwallowService, public router: Router) {
+  constructor(public swallowService: FirehouseService, public router: Router) {
    }
 
   ngOnInit() {

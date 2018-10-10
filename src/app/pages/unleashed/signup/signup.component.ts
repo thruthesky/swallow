@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { SwallowService } from '../../../services/swallow/swallow.service';
-
+import { FirehouseService } from 'firehouse';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +13,7 @@ export class SignupComponent implements OnInit {
   public genders: any;
   //fControl = new FormControl('', [Validators.required]);
 
-  constructor(public swallowService: SwallowService, public router: Router) {
+  constructor(public swallowService: FirehouseService, public router: Router) {
     this.user = {
       email: '',
       password: '',

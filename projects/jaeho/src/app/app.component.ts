@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FirehouseService, FirehouseTestService } from 'firehouse';
-
+import { FirehouseService } from 'firehouse';
+import { AppService } from './services/app.services';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +8,11 @@ import { FirehouseService, FirehouseTestService } from 'firehouse';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'swallow';
   constructor(
-    fs: FirehouseService,
-    ft: FirehouseTestService
+    public a: AppService,
+    public f: FirehouseService
   ) {
+    console.log('f', f);
 
-    // fs.version().then(v => console.log('v: ', v));
-    ft.run();
   }
 }
