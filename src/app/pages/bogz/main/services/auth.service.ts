@@ -3,10 +3,12 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserInfo } from 'firebase';
 
+export const Domain = 'swallow';
 export const Error_No_Input = 'No Data Entry';
 export const Error_No_Email = 'No Email Entry';
 export const Error_No_Password = 'No Password Entry';
 export const Error_Login_First = 'No Logged User';
+export const Error_Unauthorized = 'Unauthorized Access';
 
 export interface UserModel {
   contact?: string;
@@ -17,12 +19,25 @@ export interface UserModel {
   username?: string;
 }
 
+export interface Options {
+  domain: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   redirectUrl: string;
+
+  private options: Options = {
+    domain: 'prod-domain'
+  };
+
   constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {}
+
+  setDomain(options: Options) {
+    Object.assign(this.options, options);
+  }
 
   check(user: UserModel) {
     if (user === void 0) {
@@ -39,12 +54,12 @@ export class AuthService {
     }
   }
 
-  get collectUserInfo() {
-    return this.db.collection('user-collection');
+  get collectionDomain() {
+    return this.db.collection(Domain).doc(this.options.domain);
   }
 
-  docUserInfo(id: string) {
-    return this.collectUserInfo.doc(id);
+  docUsers(id: string) {
+    return this.collectionDomain.collection('users').doc(id);
   }
 
   error(code, message) {
@@ -74,7 +89,7 @@ export class AuthService {
 
     delete userInfo.password;
 
-    await this.docUserInfo(response.user.uid).set(userInfo);
+    await this.docUsers(response.user.uid).set(userInfo);
     return response.user;
   }
 
@@ -83,9 +98,9 @@ export class AuthService {
       throw this.error(Error_Login_First, 'User must login first');
     }
 
-    await this.docUserInfo(this.afAuth.auth.currentUser.uid).update(user);
+    await this.docUsers(this.afAuth.auth.currentUser.uid).update(user);
 
-    return <any>this.docUserInfo(this.afAuth.auth.currentUser.uid)
+    return <any>this.docUsers(this.afAuth.auth.currentUser.uid)
       .ref.get()
       .then(response => {
         if (response.exists) {
