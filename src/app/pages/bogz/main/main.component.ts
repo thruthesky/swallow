@@ -8,11 +8,12 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  constructor(public authTest: AuthTestService, public auth: AuthService) {}
+  constructor(public authTest: AuthTestService, public auth: AuthService) {
+    this.isLogin();
+  }
 
-  async ngOnInit() {
+  ngOnInit() {
     // this.authTest.run();
-    await this.isLogin();
   }
 
   isLogin() {

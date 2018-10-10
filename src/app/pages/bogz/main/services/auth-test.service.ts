@@ -10,12 +10,13 @@ import {
   Error_Unauthorized
 } from './auth.service';
 import { Chance } from 'chance';
+import { PostsService } from './posts.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthTestService {
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, public post: PostsService) {
     window['authTest'] = this;
   }
 
@@ -105,4 +106,6 @@ export class AuthTestService {
       .catch(err => err);
     this.test(response.code === Error_Unauthorized, 'Expect Failure: This is not your document');
   }
+
+  // Posts
 }

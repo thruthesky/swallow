@@ -29,11 +29,11 @@ export interface Options {
 export class AuthService {
   redirectUrl: string;
 
-  private options: Options = {
+  options: Options = {
     domain: 'prod-domain'
   };
 
-  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {}
+  constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore) {}
 
   setDomain(options: Options) {
     Object.assign(this.options, options);
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   get collectionDomain() {
-    return this.db.collection(Domain).doc(this.options.domain);
+    return this.afDB.collection(Domain).doc(this.options.domain);
   }
 
   docUsers(id: string) {
@@ -94,10 +94,7 @@ export class AuthService {
   }
 
   async update(user: UserModel): Promise<UserModel> {
-    if (!this.afAuth.auth.currentUser) {
-      throw this.error(Error_Login_First, 'User must login first');
-    }
-
+    this.isSignedIn();
     await this.docUsers(this.afAuth.auth.currentUser.uid).update(user);
 
     return <any>this.docUsers(this.afAuth.auth.currentUser.uid)
@@ -109,5 +106,11 @@ export class AuthService {
           return null;
         }
       });
+  }
+
+  isSignedIn() {
+    if (!this.afAuth.auth.currentUser) {
+      throw this.error(Error_Login_First, 'User must login first');
+    }
   }
 }

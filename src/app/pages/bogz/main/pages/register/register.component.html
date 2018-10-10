@@ -25,13 +25,12 @@
 
           <mat-form-field>
             <mat-label>Contact Number</mat-label>
-            <input matInput type="tel" name="contact" pattern="[0-9]{4} - [0-9]{3} - [0-9]{4}" ngModel max="11"
-              required>
+            <input matInput type="tel" name="contact">
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput type="password" name="password" ngModel required minlength="6">
+            <input matInput type="password" name="password" ngModel required>
             <mat-error>
               <p>minimum of 6 characters</p>
             </mat-error>

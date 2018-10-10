@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   loggedout() {
-    console.log('fire');
     this.auth.logout();
   }
 }
