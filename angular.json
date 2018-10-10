@@ -298,6 +298,148 @@
           }
         }
       }
+    },
+    "bogz": {
+      "root": "projects/bogz/",
+      "sourceRoot": "projects/bogz/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss",
+          "spec": false
+        },
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
+        },
+        "@schematics/angular:module": {
+          "spec": false
+        },
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/bogz",
+            "index": "projects/bogz/src/index.html",
+            "main": "projects/bogz/src/main.ts",
+            "polyfills": "projects/bogz/src/polyfills.ts",
+            "tsConfig": "projects/bogz/tsconfig.app.json",
+            "assets": [
+              "projects/bogz/src/favicon.ico",
+              "projects/bogz/src/assets"
+            ],
+            "styles": [
+              "projects/bogz/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/bogz/src/environments/environment.ts",
+                  "with": "projects/bogz/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bogz:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bogz:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bogz:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bogz/src/test.ts",
+            "polyfills": "projects/bogz/src/polyfills.ts",
+            "tsConfig": "projects/bogz/tsconfig.spec.json",
+            "karmaConfig": "projects/bogz/karma.conf.js",
+            "styles": [
+              "projects/bogz/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/bogz/src/favicon.ico",
+              "projects/bogz/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bogz/tsconfig.app.json",
+              "projects/bogz/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "bogz-e2e": {
+      "root": "projects/bogz-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/bogz-e2e/protractor.conf.js",
+            "devServerTarget": "bogz:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bogz:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/bogz-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "swallow"
