@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { SwallowService } from './swallow/swallow.service';
 
 
 import { environment } from '../../environments/environment';
+import { FirehouseService } from 'firehouse';
 
 
 @Injectable({ providedIn: 'root' })
 export class AppService {
     constructor(
-        public s: SwallowService
+        public s: FirehouseService
     ) {
 
         this.initDebug();
