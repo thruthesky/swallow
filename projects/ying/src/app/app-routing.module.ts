@@ -5,15 +5,12 @@ const routes: Routes = [
 	{
 		path: "",
 		pathMatch: "full",
-		loadChildren: "./pages/home/home.module#HomeModule"
-	},
-	{
-		path: "login",
 		loadChildren: "./pages/login/login.module#LoginModule"
 	},
 	{
-		path: "register",
-		loadChildren: "./pages/register/register.module#RegisterModule"
+		// to be removed after finalizing user login / signup function
+		path: "home",
+		loadChildren: "./pages/home/home.module#HomeModule"
 	},
 	{
 		path: "forums",

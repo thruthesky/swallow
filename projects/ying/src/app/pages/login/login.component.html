@@ -1,3 +1,33 @@
-<p>
-  login works!
-</p>
+<div class="mt-5">
+  <div class="col-md-5 mx-auto">
+    <div class="card">
+      <div class="card-header">
+        <p>{{ action ? 'LOGIN' : 'REGISTER' }}</p>
+      </div>
+
+      <div class="card-body form">
+        <mat-form-field *ngIf="!action">
+          <input matInput placeholder="Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="E-Mail">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Password">
+        </mat-form-field>
+        <div class="p-3 mx-auto form-option" *ngIf="!action">
+          <mat-radio-button value="M">Male</mat-radio-button>
+          <mat-radio-button value="F">Female</mat-radio-button>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <button class="float-left" mat-button color="primary" (click)="onSubmit()">
+          {{ action ? 'LOGIN' :'SUBMIT' }}
+        </button>
+        <button class="float-right" mat-button color="warn" (click)="action = !action">
+          {{ action ? 'REGISTER AN ACCOUNT' : 'LOG IN AN ACCOUNT' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

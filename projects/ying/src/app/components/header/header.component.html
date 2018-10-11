@@ -1,8 +1,9 @@
-<header>
+<mat-toolbar color="primary">
   <nav class="nav m-3">
-    <a class="p-1" [routerLink]="[ '/' ]" routerLinkActive="active">Home</a>
-    <a class="p-1" [routerLink]="[ '/login' ]" routerLinkActive="active">Login</a>
-    <a class="p-1" [routerLink]="[ '/register' ]" routerLinkActive="active">Register</a>
-    <a class="p-1" [routerLink]="[ '/forums' ]" routerLinkActive="active">Forums</a>
+    <button mat-button [routerLink]="[ '/home' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</button>
+    <!-- to be removed after finalizing user login / signup function -->
+    <button mat-button [routerLink]="[ '/' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</button>
+    <!-- <button mat-button [routerLink]="[ '/register' ]" routerLinkActive="active">Register</button> -->
+    <button mat-button [routerLink]="[ '/forums' ]" routerLinkActive="active">Forums</button>
   </nav>
-</header>
+</mat-toolbar>
