@@ -1,3 +1,11 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "category", "mode": "ASCENDING" },
+        { "fieldPath": "timestamp_create", "mode": "DESCENDING" }
+      ]
+    }
+  ]
 }
