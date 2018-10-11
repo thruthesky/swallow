@@ -5,7 +5,7 @@ import {
   Error_No_Input,
   Error_No_Password,
   Error_No_Email,
-  UserModel,
+  UserData,
   Error_Login_First,
   Error_Unauthorized
 } from './auth.service';
@@ -44,8 +44,9 @@ export class AuthTestService {
   }
 
   async tester() {
-    // register
-
+    /**
+     *  Register
+     */
     let response = await this.auth.register(undefined).catch(err => err);
     this.test(response.code === Error_No_Input, 'Expect Failure: No user input');
 
@@ -55,9 +56,16 @@ export class AuthTestService {
     response = await this.auth.register({ email: null, password: '123456' }).catch(err => err);
     this.test(response.code === Error_No_Email, 'Expect Failure: No email');
 
+    /**
+     *  Auto generate userData.
+     */
     const email = new Chance().email();
     const password = new Chance().string({ length: 8 });
-    const mockData: UserModel = {
+    const mockData: UserData = {
+      name: new Chance().name(),
+      contact: new Chance().phone(),
+      username: new Chance().string({ length: 6 }),
+      gender: 'M',
       password: password,
       email: email
     };
@@ -68,8 +76,9 @@ export class AuthTestService {
     await this.auth.logout();
     this.log('Logging Out Account');
 
-    // login
-
+    /**
+     *  Login
+     */
     response = await this.auth.login(undefined).catch(err => err);
     this.test(response.code === Error_No_Input, 'Expect Failure: No user input');
 
@@ -82,29 +91,29 @@ export class AuthTestService {
     response = await this.auth.login({ email: email, password: password }).catch(err => err);
     this.test(response.code === void 0, `Success login,  password: ${mockData.password}, email: ${mockData.email} `);
 
-    // update
-
+    /**
+     *  Update
+     */
     response = await this.auth.update({ contact: '0997 - 500 -1270' }).catch(err => err);
     this.test(
       response.code === void 0,
       `Success update, in user with password: ${mockData.password}, email: ${mockData.email}`
     );
 
+    /**
+     *  Check if user if logIn.
+     */
+    response = await this.auth
+      .docUsers('vJDVsDoqICXTGRzRg8MxxxSSCqm1')
+      .update({ name: 'Hacked' })
+      .catch(err => err);
+    this.test(response.code === void 0, 'Expect Failure: This is not your document');
+
     await this.auth.logout();
     this.log('Logging Out Account');
 
-    response = await this.auth.update({ contact: '0997 - 500 -1270' }).catch(err => err);
+    response = await this.auth.update({ contact: '0997 - 500 - 2312' }).catch(err => err);
     this.test(response.code === Error_Login_First, `Expect Failure: User must login before update`);
-
-    // rules
-
-    // isSignedIn
-
-    response = await this.auth
-      .docUsers('esQocDD8IxWE0GKiEyWul8DxOSt1')
-      .update({ name: 'Hacked' })
-      .catch(err => err);
-    this.test(response.code === Error_Unauthorized, 'Expect Failure: This is not your document');
   }
 
   // Posts

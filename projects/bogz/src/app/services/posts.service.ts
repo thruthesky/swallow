@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService, Domain } from './auth.service';
 import { firestore } from 'firebase';
 
-export interface PostModel {
+export interface PostData {
   title?: string;
   body?: string;
   uid?: string;
@@ -19,7 +19,7 @@ export class PostsService {
   }
 
   // Create
-  async createPost(post: PostModel): Promise<PostModel> {
+  async createPost(post: PostData): Promise<PostData> {
     this.auth.isSignedIn();
     await this.docPosts(post.title).set(post);
     return this.docPosts(post.title)
@@ -36,11 +36,11 @@ export class PostsService {
   // Show
   async showPosts(): Promise<firestore.DocumentData> {
     this.auth.isSignedIn();
-    return await this.auth.afDB.doc(`${Domain}/${this.auth.options}/posts`).get();
+    return await this.auth.afDB.doc(`${Domain}/${this.auth.domain}/posts`).get();
   }
 
   // Update
-  async updatePost(title: string, post: PostModel): Promise<PostModel> {
+  async updatePost(title: string, post: PostData): Promise<PostData> {
     this.auth.isSignedIn();
     await this.docPosts(title).update(post);
     return this.docPosts(title)
