@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Error, FirehouseService } from 'firehouse';
 import { Router } from '@angular/router';
+import { FirehouseService } from 'projects/modules/firehouse/firehouse.service';
 
 @Injectable({ providedIn: 'root' })
 export class AppService {

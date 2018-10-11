@@ -8,7 +8,8 @@ import { AppService } from './services/app.services';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { FirehouseModule, FirehouseService } from 'firehouse';
+import { FirehouseModule } from 'projects/modules/firehouse/firehouse.module';
+import { FirehouseService } from 'projects/modules/firehouse/firehouse.service';
 
 @NgModule({
   declarations: [
