@@ -18,7 +18,11 @@ export class PostsService {
     return this.auth.collectionDomain.collection('posts').doc(title);
   }
 
-  // Create
+  /**
+   *
+   * @param post this is the expected data (uid, title, body)
+   * @func createPost this will take the title properties and assign it as doc's id
+   */
   async createPost(post: PostData): Promise<PostData> {
     this.auth.isSignedIn();
     await this.docPosts(post.title).set(post);

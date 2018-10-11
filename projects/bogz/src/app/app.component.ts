@@ -10,6 +10,6 @@ import { AuthTestService } from './services/auth-test.service';
 export class AppComponent {
   constructor(public auth: AuthService, public authTest: AuthTestService) {
     // this.auth.setDomain({ name: 'prod-domain' });
-    this.authTest.run();
+    // this.authTest.run();
   }
 }

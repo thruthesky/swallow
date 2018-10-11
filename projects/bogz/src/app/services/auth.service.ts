@@ -7,6 +7,10 @@ export const Domain = 'swallow';
 export const Error_No_Input = 'No Data Entry';
 export const Error_No_Email = 'No Email Entry';
 export const Error_No_Password = 'No Password Entry';
+export const Error_No_Name = 'No Name Entry';
+export const Error_No_Username = 'No Username Entry';
+export const Error_No_Contact = 'No Contact Entry';
+export const Error_No_Gender = 'No Gender Entry';
 export const Error_Login_First = 'No Logged User';
 export const Error_Unauthorized = 'Unauthorized Access';
 
@@ -56,12 +60,31 @@ export class AuthService {
       throw this.error(Error_No_Input, 'Please enter valid information');
     }
     if (user === void 0 || !user.email || typeof user.email !== 'string') {
-      console.log(`Invalid Email`);
+      console.log(`Invalid Email or No Email entry`);
       throw this.error(Error_No_Email, 'Please enter valid email');
     }
     if (user === void 0 || !user.password || typeof user.password !== 'string') {
       console.log(`Invalid Password`);
       throw this.error(Error_No_Password, 'Please enter valid password');
+    }
+  }
+
+  extracheck(user: UserData) {
+    if (user === void 0 || !user.name || typeof user.name !== 'string') {
+      console.log(`Invalid Name or No Name entry`);
+      throw this.error(Error_No_Name, 'Please enter valid name');
+    }
+    if (user === void 0 || !user.username || typeof user.username !== 'string') {
+      console.log(`Invalid Username or No Username entry`);
+      throw this.error(Error_No_Username, 'Please enter valid username');
+    }
+    if (user === void 0 || !user.contact || typeof user.contact !== 'string') {
+      console.log(`Invalid Contact or No Contact entry`);
+      throw this.error(Error_No_Contact, 'Please enter valid contact');
+    }
+    if (user === void 0 || !user.gender || typeof user.gender !== 'string') {
+      console.log(`Invalid Gender or No Gender entry`);
+      throw this.error(Error_No_Gender, 'Please select gender');
     }
   }
 
@@ -117,6 +140,7 @@ export class AuthService {
 
   async register(user: UserData): Promise<UserInfo> {
     this.check(user);
+    this.extracheck(user);
     const credential: firebase.auth.UserCredential = await this.afAuth.auth.createUserWithEmailAndPassword(
       user.email,
       user.password
