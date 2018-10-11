@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: './pages/login/login.module#LoginModule'
+  },
+  {
+    path: 'forums',
+    loadChildren: './pages/forums/forums.module#ForumsModule'
   }
 ];
 

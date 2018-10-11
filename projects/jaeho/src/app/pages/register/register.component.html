@@ -1,16 +1,16 @@
 <header>
-  <h1>Register</h1>
+  <h1>{{ firehouse.isLoggedIn ? 'Profile Update' : 'Register' }}</h1>
 </header>
 
 <main>
   <form (ngSubmit)=" onSubmit() ">
     <div>
       Email:
-      <input name="email" [(ngModel)]="form.email" *ngIf=" f.isLoggedOut ">
-      <span *ngIf=" f.isLoggedIn ">{{ form.email }}</span>
+      <input name="email" [(ngModel)]="form.email" *ngIf=" firehouse.isLoggedOut ">
+      <span *ngIf=" firehouse.isLoggedIn ">{{ form.email }}</span>
     </div>
 
-    <div *ngIf=" f.isLoggedOut ">
+    <div *ngIf=" firehouse.isLoggedOut ">
         Password:
         <input name="password" [(ngModel)]="form.password">
       </div>
@@ -24,7 +24,9 @@
       </div>
 
     <div>
-      <button type="submit">Register</button>
+      <button type="submit">
+        {{ firehouse.isLoggedIn ? 'Update Profile' : 'Register' }}
+      </button>
     </div>
   </form>
 </main>

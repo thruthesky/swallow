@@ -26,8 +26,12 @@
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "firebase": "^5.5.2",
+<<<<<<< HEAD
     "firehouse": "0.0.10",
     "hammerjs": "^2.0.8",
+=======
+    "firehouse": "0.0.19",
+>>>>>>> 1b09a8c9c225e3a86fed3cbec142adb6679dec28
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
