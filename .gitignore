@@ -45,3 +45,8 @@ package-lock.json
 .prettierrc
 prettiers.config.js
 .tslint.json
+
+# Firebase
+functions
+src/app/pages/bogz/main/assets
+public

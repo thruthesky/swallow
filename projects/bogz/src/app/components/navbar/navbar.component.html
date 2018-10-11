@@ -1,0 +1,28 @@
+<nav mat-tab-nav-bar backgroundColor="primary" class="mat-elevation-z5">
+  <div class="container d-flex">
+    <a mat-tab-link *ngFor="let menu of menus" [routerLink]="[ menu.path ]" routerLinkActive #navLink="routerLinkActive"
+      [routerLinkActiveOptions]="{exact: true}" [active]="navLink.isActive"> {{ menu.name }} </a>
+
+    <span class="spacer"></span>
+
+    <div class="d-inline-flex text-white" *ngIf="isLogged; else logout">
+
+      <button mat-button> {{ 'Username' }} </button>
+
+      <mat-menu #more="matMenu" overlapTrigger="false">
+        <button mat-menu-item [routerLink]="['./admin']"> Admin </button>
+        <button mat-menu-item (mousedown)="loggedout()"> Logout </button>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="more" class="align-self-center">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+    </div>
+
+    <ng-template #logout>
+      <button mat-button class="text-white" [routerLink]="['/register']"> Register </button>
+      <button mat-button class="text-white" [routerLink]="['/login']"> Login </button>
+    </ng-template>
+  </div>
+</nav>
