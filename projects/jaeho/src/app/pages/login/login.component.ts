@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../services/app.services';
-import { FirehouseService } from 'firehouse';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +11,7 @@ export class LoginComponent implements OnInit {
   email;
   password;
   constructor(
-    public a: AppService,
-    public f: FirehouseService
+    public a: AppService
   ) { }
 
   ngOnInit() {
@@ -22,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
 
-    const re = await this.f.userLogin( this.email, this.password).catch(e => e);
-    if ( this.f.isError(re) ) {
+    const re = await this.a.firehouse.userLogin( this.email, this.password).catch(e => e);
+    if ( this.a.firehouse.isError(re) ) {
       this.a.error(re);
     } else {
       this.a.alert('Login success');

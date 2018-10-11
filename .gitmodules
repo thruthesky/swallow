@@ -1,0 +1,3 @@
+[submodule "projects/modules/firehouse"]
+	path = projects/modules/firehouse
+	url = https://github.com/thruthesky/firehouse-library
