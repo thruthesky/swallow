@@ -6,6 +6,7 @@
     <a class="d-inline-block p-3" routerLink='/' (click)=" f.userLogout() " *ngIf=" f.isLoggedIn ">Logout</a> 
     <a class="d-inline-block p-3" routerLink='/profile' *ngIf=" f.isLoggedIn ">Profile Update</a>
     <a class="d-inline-block p-3" routerLink="/menu">Menu</a>
+    <a class="d-inline-block p-3" routerLink="/forums">Forums</a>
     
 
     <span *ngIf=" f.isLoggedIn ">
@@ -14,3 +15,4 @@
   </nav>
 </header>
 <router-outlet></router-outlet>
+
