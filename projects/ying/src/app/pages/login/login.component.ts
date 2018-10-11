@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { UserService, User } from "../../services/user.service";
 
 @Component({
 	selector: "app-login",
@@ -8,9 +9,17 @@ import { Component, OnInit } from "@angular/core";
 export class LoginComponent implements OnInit {
 	action = true;
 
-	constructor() {}
+	userForm: User = {};
+
+	constructor(public userService: UserService) {
+		//
+	}
 
 	ngOnInit() {}
+
+	gender(g) {
+		this.userForm.gender = g;
+	}
 
 	onSubmit() {
 		if (this.action) {
