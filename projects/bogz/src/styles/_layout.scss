@@ -1,0 +1,28 @@
+app-navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+app-root > app-home,
+app-root > app-forum,
+app-root > app-register,
+app-root > app-login {
+  overflow-y: auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
