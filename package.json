@@ -25,7 +25,7 @@
     "@angular/router": "^6.1.0",
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
-    "firebase": "^5.5.2",
+    "firebase": "^5.5.3",
     "firehouse": "0.0.10",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
