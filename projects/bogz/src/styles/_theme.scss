@@ -1,0 +1,24 @@
+// provide access to Angular Material theming variables and mixins.
+@import '~@angular/material/theming';
+@import './../app/pages/home/home-theme';
+
+@import './../app/shared/component/footer/footer-theme';
+@import './../app/shared//component/header/header-theme';
+// include common styles for Angular Material. Note: this mixin should be included once.
+@include mat-core();
+
+// for each palette, you can optionally specify a default, lighter, and darker hue.
+// available color palettes: https://material.io/design/color/
+$app-primary: mat-palette($mat-blue);
+$app-accent: mat-palette($mat-light-blue);
+
+// warn palette is optional.
+// $app-warn: mat-palette($mat-red);
+
+// applying the custom palette to a theme.
+// availble theme: light & dark.
+$app-theme: mat-light-theme($app-primary, $app-accent);
+
+// apply theme to core and every component in the app.
+// add this to angular.json styles.
+@include angular-material-theme($app-theme);
