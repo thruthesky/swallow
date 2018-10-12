@@ -1,3 +1,8 @@
+/**
+ * this codes came from the firehouse-library
+ *
+ */
+
 import { Injectable } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/auth'
 
@@ -30,6 +35,15 @@ export class AuthService {
   }
 
   /**
+   * @method currentUser
+   *
+   * @desc - returns the current logged user
+   */
+  get currentUser(): firebase.UserInfo {
+    return this.afAuth.auth.currentUser
+  }
+
+  /**
    * @todo need test
    */
   get isLoggedIn(): boolean {
@@ -41,15 +55,6 @@ export class AuthService {
    */
   get isLoggedOut() {
     return !this.isLoggedIn
-  }
-
-  /**
-   * @method currentUser
-   *
-   * @desc - returns the current logged user
-   */
-  get currentUser(): firebase.UserInfo {
-    return this.afAuth.auth.currentUser
   }
 
   /**
@@ -72,7 +77,7 @@ export class AuthService {
    *
    */
   public async userRegister(user: User): Promise<firebase.UserInfo> {
-    console.log('userRegister() => ', user)
+    // console.log('userRegister() => ', user)
 
     if (user === void 0) {
       console.log('user is void')

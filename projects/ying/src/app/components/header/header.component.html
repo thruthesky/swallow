@@ -1,9 +1,13 @@
 <mat-toolbar color="primary">
-  <nav class="nav m-3">
-    <button mat-button [routerLink]="[ '/home' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</button>
+  <nav class="nav">
     <!-- to be removed after finalizing user login / signup function -->
-    <button mat-button [routerLink]="[ '/' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</button>
-    <!-- <button mat-button [routerLink]="[ '/register' ]" routerLinkActive="active">Register</button> -->
-    <button mat-button [routerLink]="[ '/forums' ]" routerLinkActive="active">Forums</button>
+    <button *ngIf="!auth.isLoggedIn" mat-button>
+      Login
+    </button>
+
+    <!-- must not be visible when someone is not logged in -->
+    <button *ngIf="auth.isLoggedIn" mat-button [routerLink]="[ '/home' ]" routerLinkActive="active">Home</button>
+    <button *ngIf="auth.isLoggedIn" mat-button [routerLink]="[ '/forums' ]" routerLinkActive="active">Forums</button>
+    <button *ngIf="auth.isLoggedIn" mat-button class="float-right" (click)="logout()">Logout</button>
   </nav>
 </mat-toolbar>

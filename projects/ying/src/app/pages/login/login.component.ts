@@ -23,7 +23,13 @@ export class LoginComponent implements OnInit {
     //
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.auth.currentUser) {
+      console.log(this.auth.currentUser.email)
+    } else {
+      console.log('no user')
+    }
+  }
 
   gender(g) {
     this.userForm.gender = g
@@ -38,7 +44,7 @@ export class LoginComponent implements OnInit {
           alert(e.message)
         })
       if (isloggedin) {
-        this.router.navigateByUrl('forums')
+        this.router.navigateByUrl('home')
         alert('Logged in!')
       }
     } else {
