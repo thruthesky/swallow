@@ -1,31 +1,32 @@
-import { Component, OnInit } from "@angular/core";
-import { UserService, User } from "../../services/user.service";
+import { Component, OnInit } from '@angular/core'
+
+import { User } from '../../shared/types/service.interface'
 
 @Component({
-	selector: "app-login",
-	templateUrl: "./login.component.html",
-	styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-	action = true;
+  action = true
 
-	userForm: User = {};
+  userForm: User = {}
 
-	constructor(public userService: UserService) {
-		//
-	}
+  constructor() {
+    //
+  }
 
-	ngOnInit() {}
+  ngOnInit() {}
 
-	gender(g) {
-		this.userForm.gender = g;
-	}
+  gender(g) {
+    this.userForm.gender = g
+  }
 
-	onSubmit() {
-		if (this.action) {
-			// login
-		} else {
-			// Register
-		}
-	}
+  onSubmit() {
+    if (this.action) {
+      // login
+    } else {
+      // Register
+    }
+  }
 }
