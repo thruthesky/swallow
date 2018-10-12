@@ -105,7 +105,7 @@ export class AuthService {
     userData.uid = re.user.uid
 
     const ref = this.dbService.colUsers.doc(userData.uid)
-    // console.log('ref: ', ref.ref.path);
+    console.log('ref: ', ref.ref.path)
 
     // console.log('userData: ', userData);
     await ref.set(userData)
@@ -130,6 +130,7 @@ export class AuthService {
     if (password === void 0 || typeof password !== 'string' || !password) {
       throw this.msgService.error(ERROR_EMPTY_PASSWORD, 'Password is empty')
     }
+
     const credential = await this.afAuth.auth.signInWithEmailAndPassword(
       email,
       password

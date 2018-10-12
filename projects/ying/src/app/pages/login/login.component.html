@@ -6,20 +6,26 @@
       </div>
 
       <div class="card-body form" (ngSubmit)="onSubmit()">
+
         <mat-form-field *ngIf="!action">
-          <input matInput placeholder="Name" [(ngModel)]="userForm.name">
+          <input matInput name="name" matInput placeholder="Name" [(ngModel)]="userForm.name">
         </mat-form-field>
+
         <mat-form-field>
           <input matInput placeholder="E-Mail" [(ngModel)]="userForm.email">
         </mat-form-field>
+
         <mat-form-field>
           <input matInput placeholder="Password" [(ngModel)]="userForm.password">
         </mat-form-field>
+
         <div class="p-3 mx-auto form-option" *ngIf="!action">
           <mat-radio-button (click)="gender('M')">Male</mat-radio-button>
           <mat-radio-button (click)="gender('F')">Female</mat-radio-button>
         </div>
+
       </div>
+
       <div class="card-footer text-center">
         <button class="float-left" mat-button color="primary" (click)="onSubmit()">
           {{ action ? 'LOGIN' :'SUBMIT' }}
@@ -28,6 +34,7 @@
           {{ action ? 'REGISTER AN ACCOUNT' : 'LOG IN AN ACCOUNT' }}
         </button>
       </div>
+
     </div>
   </div>
 </div>

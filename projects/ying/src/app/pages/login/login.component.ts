@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 
+import { Router } from '@angular/router'
 import { User } from '../../shared/types/service.interface'
+import { AuthService } from '../../shared/services/auth.service'
+import { MessageService } from '../../shared/services/message.service'
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,11 @@ export class LoginComponent implements OnInit {
 
   userForm: User = {}
 
-  constructor() {
+  constructor(
+    public auth: AuthService,
+    public message: MessageService,
+    public router: Router
+  ) {
     //
   }
 
@@ -22,11 +29,29 @@ export class LoginComponent implements OnInit {
     this.userForm.gender = g
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.action) {
       // login
+      const isloggedin = await this.auth
+        .userLogin(this.userForm.email, this.userForm.password)
+        .catch(e => {
+          alert(e.message)
+        })
+      if (isloggedin) {
+        this.router.navigateByUrl('forums')
+        alert('Logged in!')
+      }
     } else {
       // Register
+      const isRegistered = await this.auth
+        .userRegister(this.userForm)
+        .catch(e => {
+          alert(e.message)
+        })
+      if (isRegistered) {
+        alert('Account Registered!')
+        this.action = true
+      }
     }
   }
 }

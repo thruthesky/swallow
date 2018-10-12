@@ -13,3 +13,12 @@ export const ERROR_EMPTY_EMAIL = 'empty-email'
 export const ERROR_EMPTY_PASSWORD = 'empty-password'
 
 export const POST_DELETE = 'Post has been deleted...!'
+
+/**
+ *
+ * @const ERROR_EMAIL_INVALID = when trying to log in with a non-existent account
+ * @const ERROR_EMAIL_BAD_FORMAT = when trying to log in a nan Email format
+ *
+ */
+export const ERROR_EMAIL_BAD_FORMAT = 'auth/invalid-email'
+export const ERROR_EMAIL_INVALID = 'auth/user-not-found'
