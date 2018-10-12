@@ -7,7 +7,7 @@
 
     <div class="d-inline-flex text-white" *ngIf="isLogged; else logout">
 
-      <button mat-button> {{ this.auth.currentUser() ? this.auth.currentUser().email : '' }} </button>
+      <button mat-button> {{ this.auth.currentUser ? this.auth.currentUser.email : '' }} </button>
 
       <mat-menu #more="matMenu" overlapTrigger="false">
         <button mat-menu-item [routerLink]="['./admin']"> Admin </button>
