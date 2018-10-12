@@ -15,6 +15,7 @@ export const Error_Login_First = 'No Logged User';
 export const Error_Unauthorized = 'Unauthorized Access';
 
 export interface UserData {
+  uid?: string;
   contact?: string;
   email?: string;
   gender?: 'M' | 'F';
@@ -40,20 +41,19 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore) {}
 
   /**
-   *
    * @param domain this set the default collection ref $(domain) in firebase.
    * if not set this will use 'test'.
    */
+
   setDomain(domain: DomainOptions) {
     Object.assign(this.domain, domain);
   }
 
   /**
-   *
    * @param user is the data we need to check using check().
    * @func check is used to check against user data.
-   *
    */
+
   private check(user: UserData) {
     if (user === void 0) {
       console.log(`No user information`);
@@ -89,53 +89,54 @@ export class AuthService {
   }
 
   /**
-   *
    * @const Domain by is was set equals to 'swallow'
-   * @func collectionDomain is used to set the path or reference doc's collection.
-   *
+   * @func docDomain is used to set the path or reference doc's collection.
    */
-  get collectionDomain() {
+
+  get docDomain() {
     return this.afDB.collection(Domain).doc(this.domain.name);
   }
 
-  /**
-   *
-   * @param id is used to define the doc id in firebase.
-   * @func docUsers return the reference for users collection of docs.
-   * @func error return an object for error handling.
-   *
-   */
-  docUsers(id: string) {
-    return this.collectionDomain.collection('users').doc(id);
+  colUser() {
+    return this.docDomain.collection('users');
   }
+
+  docUser(uid: string) {
+    return this.colUser().doc(uid);
+  }
+
+  /**
+   * @param id is used to define the doc id in firebase.
+   * @func docUser return the reference for users collection of docs.
+   * @func error return an object for error handling.
+   */
 
   error(code, message) {
     return { code: code, message: message };
   }
 
   /**
-   *
+   * @desc will return a promise of firebase.UserInfo.
    * @param user is data expected from the login form after submit.
-   * @func login will return a promise of firebase.UserInfo.
-   *
    */
+
   async login(user: UserData): Promise<UserInfo> {
     this.check(user);
     const credential = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
     return credential.user;
   }
 
+  /**
+   * @desc this will logout current user.
+   */
+
   logout() {
     this.afAuth.auth.signOut();
   }
 
   /**
-   *
+   * @desc register and return user credential.
    * @param user is data expected from the register form after submit.
-   * @func register use the email and password to register in firebase,
-   * all information is saved (except password)in the docs that correspond to user uid generaeted by firebase upon account creation.
-   * @returns a promise of user credential
-   *
    */
 
   async register(user: UserData): Promise<UserInfo> {
@@ -147,44 +148,50 @@ export class AuthService {
     );
     const userInfo = Object.assign({}, user);
     delete userInfo.password;
+    userInfo.uid = credential.user.uid;
 
-    await this.docUsers(credential.user.uid).set(userInfo);
+    await this.docUser(credential.user.uid).set(userInfo);
     return credential.user;
   }
 
   /**
-   *
+   * @desc will update and return updated data.
    * @param user is the additional infomation that we want to respective owner.
-   * @func update check if the user is logIn before adding addtional data.
-   * it will return a promise of updated data.
-   *
    */
 
   async update(user: UserData): Promise<UserData> {
-    if (!this.currentUser()) {
+    if (!this.currentUser) {
       throw this.error(Error_Login_First, 'User must login first');
     }
-    await this.docUsers(this.afAuth.auth.currentUser.uid).update(user);
-    return <any>this.docUsers(this.afAuth.auth.currentUser.uid)
+    await this.docUser(this.currentUser.uid).update(user);
+    return await this.getUser(this.currentUser.uid);
+  }
+
+  /**
+   * will return user data is true, return null if false.
+   * @param uid is the reference for docs
+   */
+  async getUser(uid): Promise<UserData> {
+    return await (<any>this.docUser(uid)
       .ref.get()
-      .then(response => {
-        if (response.exists) {
-          return response.data();
+      .then(doc => {
+        if (doc.exists) {
+          return doc.data();
         } else {
-          return;
+          return null;
         }
-      });
+      }));
   }
 
   isSignedIn() {
-    if (this.currentUser()) {
+    if (this.currentUser) {
       return true;
     } else {
       return false;
     }
   }
 
-  currentUser() {
+  get currentUser(): firebase.UserInfo {
     return this.afAuth.auth.currentUser;
   }
 }

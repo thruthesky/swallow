@@ -6,7 +6,6 @@ import {
   Error_No_Password,
   Error_No_Email,
   UserData,
-  Error_Login_First,
   Error_Unauthorized
 } from './auth.service';
 import { Chance } from 'chance';
@@ -88,8 +87,8 @@ export class AuthTestService {
     response = await this.auth.login({ email: null, password: '123456' }).catch(err => err);
     this.test(response.code === Error_No_Email, 'Expect Failure: No email');
 
-    response = await this.auth.login({ email: email, password: password }).catch(err => err);
-    this.test(response.code === void 0, `Success login,  password: ${mockData.password}, email: ${mockData.email} `);
+    const user = await this.auth.login({ email: email, password: password }).catch(err => err);
+    this.test(user.code === void 0, `Success login,  password: ${mockData.password}, email: ${mockData.email} `);
 
     /**
      *  Update
@@ -101,20 +100,32 @@ export class AuthTestService {
     );
 
     /**
-     *  Check if user if logIn.
+     *  Auto generate userData.
      */
+    const email2 = new Chance().email();
+    const password2 = new Chance().string({ length: 8 });
+    const mockData2: UserData = {
+      name: new Chance().name(),
+      contact: new Chance().phone(),
+      username: new Chance().string({ length: 6 }),
+      gender: 'M',
+      password: password2,
+      email: email2
+    };
+
+    // get the current user
+    const mock2 = this.auth.currentUser;
+
+    const user2 = await this.auth.register(mockData2).catch(err => err);
+    this.test(user2.code === void 0, `Success entry, password: ${mockData.password}, email: ${mockData.email} `);
+
     response = await this.auth
-      .docUsers('vJDVsDoqICXTGRzRg8MxxxSSCqm1')
+      .docUser(mock2.uid)
       .update({ name: 'Hacked' })
       .catch(err => err);
-    this.test(response.code === void 0, 'Expect Failure: This is not your document');
+    this.test(response.code === Error_Unauthorized, 'Expect Failure: This is not your document');
 
     await this.auth.logout();
     this.log('Logging Out Account');
-
-    response = await this.auth.update({ contact: '0997 - 500 - 2312' }).catch(err => err);
-    this.test(response.code === Error_Login_First, `Expect Failure: User must login before update`);
   }
-
-  // Posts
 }
