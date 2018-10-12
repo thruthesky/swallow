@@ -72,13 +72,12 @@ service cloud.firestore {
       allow get: if true;
       allow list: if request.query.limit <= 50;
       allow create: if isLogin()
-        && request.resource.data.keys().hasAll(['category', 'uid'])
+        && request.resource.data.keys().hasAll(['category', 'uid']) // category & uid is necessary to create a post.
         && ! exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)) // post must not exists to create.
-        && exists(/databases/$(database)/documents/swallow/$(domain)/categories/$(request.resource.data.category)) // category must exist to create.
-        && request.resource.data.uid == request.auth.uid;
+        && request.resource.data.uid == request.auth.uid; // uid must be the same of login user's uid. Meaning, user cannot create a post with other's uid.
+
       allow update: if isLogin() && isMyDocument()
 	      && exists(/databases/$(database)/documents/swallow/$(domain)/posts/$(post)) // post must exists to edit.
-        && exists(/databases/$(database)/documents/swallow/$(domain)/categories/$(request.resource.data.category)) // category must exist to edit.
       // allow delete: if postDeleteValidator();
       
       match /likes {

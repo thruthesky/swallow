@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FirehouseService } from 'firehouse';
 import { AppService } from './services/app.services';
 
 @Component({
@@ -9,10 +8,8 @@ import { AppService } from './services/app.services';
 })
 export class AppComponent {
   constructor(
-    public a: AppService,
-    public f: FirehouseService
+    public a: AppService
   ) {
-    console.log('f', f);
 
   }
 }

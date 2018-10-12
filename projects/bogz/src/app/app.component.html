@@ -1,3 +1,2 @@
-<app-navbar></app-navbar>
+<app-navbar [isLogged]="this.auth.isSignedIn()"></app-navbar>
 <router-outlet></router-outlet>
-<app-footer></app-footer>

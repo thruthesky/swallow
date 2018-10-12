@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @Input()
+  isLogged = false;
 
-  constructor() { }
+  menus = [{ path: '/', name: 'Home' }, { path: '/forum', name: 'Forum' }];
 
-  ngOnInit() {
-  }
+  constructor(public auth: AuthService) {}
 
+  ngOnInit() {}
 }

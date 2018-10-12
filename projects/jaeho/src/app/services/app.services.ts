@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Error, FirehouseService } from 'firehouse';
 import { Router } from '@angular/router';
+import { FirehouseService } from 'projects/modules/firehouse/firehouse.service';
 
 @Injectable({ providedIn: 'root' })
 export class AppService {
@@ -8,7 +8,7 @@ export class AppService {
     constructor(
         private ngZone: NgZone,
         private router: Router,
-        public f: FirehouseService
+        public firehouse: FirehouseService
     ) {
         window['a'] = this;
         this.initRenderOnStateChange();
@@ -16,7 +16,7 @@ export class AppService {
 
 
     initRenderOnStateChange() {
-        this.f.fireAuth.auth.onAuthStateChanged(() => {
+        this.firehouse.authChange.subscribe( user => {
             this.render();
         });
     }

@@ -8,7 +8,9 @@ import { AppService } from './services/app.services';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { FirehouseModule } from 'firehouse';
+import { FirehouseModule } from 'projects/modules/firehouse/firehouse.module';
+import { FirehouseService } from 'projects/modules/firehouse/firehouse.service';
+import { FirehouseTestService } from 'projects/modules/firehouse/firehouse.test.service';
 
 @NgModule({
   declarations: [
@@ -33,4 +35,9 @@ import { FirehouseModule } from 'firehouse';
   providers: [AppService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor( firehouse: FirehouseService, t: FirehouseTestService ) {
+    firehouse.setOptions({ domain: 'test' });
+    t.run();
+  }
+}
