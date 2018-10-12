@@ -11,21 +11,33 @@
           <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput type="text" name="name" ngModel required>
+            <mat-error>
+              <p>Please enter name</p>
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Username</mat-label>
             <input matInput type="text" name="username" ngModel required>
+            <mat-error>
+              <p>Please enter username</p>
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Email</mat-label>
             <input matInput type="email" name="email" ngModel required>
+            <mat-error>
+              <p>Please enter valid email</p>
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Contact Number</mat-label>
             <input matInput type="tel" name="contact" ngModel required>
+            <mat-error>
+              <p>Please provide contact no.</p>
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -36,6 +48,7 @@
             </mat-error>
           </mat-form-field>
 
+          <br>
           <mat-radio-group name="gender" ngModel required>
             <mat-label>Gender</mat-label>
             <mat-radio-button value="M" class="ml-2"> Male </mat-radio-button>

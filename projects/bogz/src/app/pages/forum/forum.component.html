@@ -1,26 +1,10 @@
-<header>
-  <div class="container">
+<header class="headline">
+  <div class="container mat-typography">
     <h1>Forum</h1>
+    <h2>This forum is dedicated for register user only</h2>
   </div>
 </header>
 
-<main>
-  <div class="container">
-    <h4>Form</h4>
-    <form (ngSubmit)="onSubmit(post)" #post="ngForm" class="w100">
-
-      <mat-form-field>
-        <mat-label>Title</mat-label>
-        <input matInput type="text" name="title" ngModel required>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Body</mat-label>
-        <textarea [matInput]="editor" matTextareaAutosize name="body" ngModel required></textarea>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" type="submit"> Submit </button>
-
-    </form>
-  </div>
+<main class="container">
+  <router-outlet></router-outlet>
 </main>

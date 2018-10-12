@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ClassicEditorBuild } from '@ckeditor/ckeditor5-build-classic';
+import * as InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
 @Component({
   selector: 'app-forum',
@@ -8,7 +7,7 @@ import { ClassicEditorBuild } from '@ckeditor/ckeditor5-build-classic';
   styleUrls: ['./forum.component.scss']
 })
 export class ForumComponent implements OnInit {
-  editor = ClassicEditorBuild;
+  public Editor = InlineEditor;
   constructor() {}
 
   ngOnInit() {}

@@ -1,66 +1,79 @@
 import { Injectable } from '@angular/core';
-import { AuthService, Domain } from './auth.service';
+import { AuthService } from './auth.service';
 import { firestore } from 'firebase';
 
+export const Error_Permission_Denied = 'Unauthorized Access';
+
 export interface PostData {
+  category?: string;
   title?: string;
-  body?: string;
+  content?: string;
   uid?: string;
+  id?: string; // this is need for doc reference
+  created_at?: any;
+  updated_at?: any;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-  constructor(public auth: AuthService) {}
+  constructor(private auth: AuthService) {}
 
-  docPosts(title: string) {
-    return this.auth.collectionDomain.collection('posts').doc(title);
+  /**
+   * @desc this is reference path to collection of post & doc
+   */
+  colPost() {
+    return this.auth.docDomain.collection('posts');
+  }
+
+  docPost(uid) {
+    return this.colPost().doc(uid);
   }
 
   /**
-   *
-   * @param post this is the expected data (uid, title, body)
-   * @func createPost this will take the title properties and assign it as doc's id
+   * @desc will create and return post.
+   * @param post expeccted data from user.
    */
+
   async createPost(post: PostData): Promise<PostData> {
-    this.auth.isSignedIn();
-    await this.docPosts(post.title).set(post);
-    return this.docPosts(post.title)
+    post.created_at = firestore.FieldValue.serverTimestamp();
+    const response = await this.colPost().add(post);
+    return this.getPost(response.id);
+  }
+
+  /**
+   * @desc will  fetch post data.
+   * @param uid is used as doc reference for fetching data.
+   */
+
+  async getPost(uid: string): Promise<PostData> {
+    return await this.docPost(uid)
       .ref.get()
-      .then(response => {
-        if (response.exists) {
-          return response.data();
+      .then(doc => {
+        if (doc.exists) {
+          const post: PostData = doc.data();
+          post.id = uid;
+          return post;
         } else {
           return null;
         }
       });
   }
 
-  // Show
-  async showPosts(): Promise<firestore.DocumentData> {
-    this.auth.isSignedIn();
-    return await this.auth.afDB.doc(`${Domain}/${this.auth.domain}/posts`).get();
+  async getPosts(): Promise<any> {
+    return await this.colPost().ref.get();
   }
 
-  // Update
-  async updatePost(title: string, post: PostData): Promise<PostData> {
-    this.auth.isSignedIn();
-    await this.docPosts(title).update(post);
-    return this.docPosts(title)
-      .ref.get()
-      .then(response => {
-        if (response.exists) {
-          return response.data();
-        } else {
-          return null;
-        }
-      });
-  }
+  /**
+   * @desc will update and return updated post
+   * @param id is the doc reference id
+   * @param post is the data expected when update
+   */
 
-  // Delete
-  async deletePost(title: string) {
-    this.auth.isSignedIn();
-    await this.docPosts(title).delete();
+  async updatePost(id: string, post: PostData): Promise<PostData> {
+    post.updated_at = firestore.FieldValue.serverTimestamp;
+    await this.docPost(id).update(post);
+    return this.getPost(post.uid);
   }
 }
