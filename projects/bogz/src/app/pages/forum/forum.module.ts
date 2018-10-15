@@ -15,6 +15,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { ForumComponent } from './forum.component';
 import { PostsComponent } from './posts/posts.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,6 @@ import { PostsComponent } from './posts/posts.component';
     MatIconModule,
     CKEditorModule
   ],
-  declarations: [ForumComponent, PostsComponent]
+  declarations: [ForumComponent, PostsComponent, CommentsComponent]
 })
 export class ForumModule {}

@@ -3,7 +3,9 @@
   <div class="col-9">
     <mat-card *ngFor="let post of posts" class="mt-3 mat-typography">
       <mat-card-header>
-        <mat-card-title> {{ post.title }} </mat-card-title>
+        <mat-card-title>
+          <h1>{{ post.title }}</h1>
+        </mat-card-title>
         <mat-card-subtitle *ngIf="post.catergory"> Category: {{ post.catergory }}
         </mat-card-subtitle>
       </mat-card-header>
@@ -13,7 +15,7 @@
         <p> {{ post.content }} </p>
         <h3> {{ post.id }} </h3>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions class="pl-3">
         <button mat-icon-button (click)="post.liked ? unlikePost(post.id) : likePost(post.id)">
           <span> {{ post.likes }} </span>
           <mat-icon>thumb_up</mat-icon>
@@ -22,6 +24,9 @@
           <span> {{ post.dislikes }} </span>
           <mat-icon>thumb_down</mat-icon>
         </button>
+        <mat-form-field class="ml-3 w-75">
+          <input matInput matAutoSize type="text" name="comment" placeholder="Comment">
+        </mat-form-field>
       </mat-card-actions>
     </mat-card>
 

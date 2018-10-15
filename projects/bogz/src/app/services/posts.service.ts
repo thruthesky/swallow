@@ -222,6 +222,9 @@ export class PostsService {
    */
 
   async addLikes(postUid: string) {
+    if (!this.auth.currentUser) {
+      throw console.log(` there is no login user`);
+    }
     const user = this.auth.currentUser;
     await this.colLikes(postUid)
       .doc(user.uid)
@@ -235,6 +238,9 @@ export class PostsService {
    */
 
   async addDislikes(postUid: string) {
+    if (!this.auth.currentUser) {
+      throw console.log(` there is no login user`);
+    }
     const user = this.auth.currentUser;
     await this.colDislikes(postUid)
       .doc(user.uid)
@@ -255,18 +261,36 @@ export class PostsService {
    * will return a QuerySnapshot.
    * @param postUid is used to reference the post doc.
    */
+
   async getDislikes(postUid: string): Promise<firestore.QuerySnapshot> {
     return await this.colDislikes(postUid).ref.get();
   }
 
+  /**
+   * will return the current number of docs in the collection.
+   * @param postUid is used as likes doc reference to fetch likes doc
+   */
+
   async deleteLikes(postUid: string) {
+    if (!this.auth.currentUser) {
+      throw console.log(` there is no login user`);
+    }
     const user = this.auth.currentUser;
     await this.colLikes(postUid)
       .doc(user.uid)
       .delete();
     return await this.getLikes(postUid);
   }
+
+  /**
+   * will return the current number of docs in the collection.
+   * @param postUid is used as dislikes doc reference to fetch likes doc
+   */
+
   async deleteDislikes(postUid: string) {
+    if (!this.auth.currentUser) {
+      throw console.log(` there is no login user`);
+    }
     const user = this.auth.currentUser;
     await this.colDislikes(postUid)
       .doc(user.uid)
