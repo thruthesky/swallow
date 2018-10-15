@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'forums',
     loadChildren: './pages/forums/forums.module#ForumsModule'
+  },
+  {
+    path: 'forum/:category',
+    loadChildren: './pages/post-list/post-list.module#PostListModule'
   }
 ];
 

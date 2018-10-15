@@ -1,0 +1,27 @@
+<header>
+  <h1>{{ form.category }}</h1>
+</header>
+<main>
+  <form (ngSubmit)=" onSubmit() ">
+    <div>
+      <input type="text" name="title" [(ngModel)]="form.title">
+    </div>
+    <textarea name="content" [(ngModel)]="form.content">
+
+    </textarea>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <hr>
+  <ul>
+    <li *ngFor="let post of posts | async">
+      [ {{ post.category }} ]
+      {{ post.title }}
+      <div class="p-3 bg-light">
+        {{ post.content }}
+      </div>
+    </li>
+  </ul>
+</main>

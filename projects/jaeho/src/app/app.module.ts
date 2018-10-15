@@ -37,7 +37,7 @@ import { FirehouseTestService } from 'projects/modules/firehouse/firehouse.test.
 })
 export class AppModule {
   constructor( firehouse: FirehouseService, t: FirehouseTestService ) {
-    firehouse.setOptions({ domain: 'test' });
-    t.run();
+    // firehouse.setOptions({ domain: 'test' });
+    // t.run();
   }
 }

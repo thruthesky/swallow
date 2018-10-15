@@ -16,9 +16,13 @@ export class AppService {
 
 
     initRenderOnStateChange() {
-        this.firehouse.authChange.subscribe( user => {
+
+        this.firehouse.auth.onAuthStateChanged( user => {
             this.render();
         });
+        // this.firehouse.authChange.subscribe( user => {
+        //     this.render();
+        // });
     }
 
     render() {
