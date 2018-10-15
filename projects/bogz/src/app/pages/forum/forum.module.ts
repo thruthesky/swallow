@@ -8,7 +8,8 @@ import {
   MatRadioModule,
   MatInputModule,
   MatButtonModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatIconModule
 } from '@angular/material';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
@@ -37,6 +38,7 @@ import { PostsComponent } from './posts/posts.component';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
+    MatIconModule,
     CKEditorModule
   ],
   declarations: [ForumComponent, PostsComponent]

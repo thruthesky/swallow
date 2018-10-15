@@ -143,9 +143,5 @@ export class PostsTestService {
     // this will get all post from osiris category
     response = await this.postsService.getPosts({ where: 'Osiris' });
     this.testSuccess(response, 'Posts from osiris category', response);
-
-    // this will get all post regardless of their category.
-    response = await this.postsService.getPosts().catch(err => err);
-    this.testSuccess(response, 'get all post category', response);
   }
 }

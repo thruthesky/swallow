@@ -11,8 +11,20 @@
       <mat-card-content>
         <h3>Content: </h3>
         <p> {{ post.content }} </p>
+        <h3> {{ post.id }} </h3>
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button (click)="post.liked ? unlikePost(post.id) : likePost(post.id)">
+          <span> {{ post.likes }} </span>
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <button mat-icon-button (click)="post.unliked ? undislikePost(post.id) : dislikePost(post.id)">
+          <span> {{ post.dislikes }} </span>
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+      </mat-card-actions>
     </mat-card>
+
   </div>
 
   <div class="col-3">
