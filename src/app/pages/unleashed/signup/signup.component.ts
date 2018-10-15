@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { FirehouseService } from 'firehouse';
+import { FirehouseService } from '../../../../../projects/modules/firehouse/firehouse.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -42,7 +43,7 @@ export class SignupComponent implements OnInit {
     try{
       if(ret){
         this.swallowService.userUpdate(this.user);
-        let navExtras: NavigationExtras = {
+        const navExtras: NavigationExtras = {
         };
         this.router.navigate([''], navExtras);
       }

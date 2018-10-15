@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FirehouseService, FirehouseTestService } from 'firehouse';
+import { FirehouseService } from '../../projects/modules/firehouse/firehouse.service';
 
 
 @Component({
@@ -10,11 +10,10 @@ import { FirehouseService, FirehouseTestService } from 'firehouse';
 export class AppComponent {
   title = 'swallow';
   constructor(
-    fs: FirehouseService,
-    ft: FirehouseTestService
+    fs: FirehouseService
   ) {
 
     // fs.version().then(v => console.log('v: ', v));
-    ft.run();
+    // ft.run();
   }
 }

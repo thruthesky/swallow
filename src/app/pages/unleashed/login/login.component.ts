@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
-import { FirehouseService } from 'firehouse';
+import { FirehouseService } from '../../../../../projects/modules/firehouse/firehouse.service';
 
 @Component({
   selector: 'app-login',
@@ -11,20 +11,20 @@ import { FirehouseService } from 'firehouse';
 export class LoginComponent implements OnInit {
 
   constructor(public swallowService: FirehouseService, public router: Router) {
-   }
+  }
 
   ngOnInit() {
   }
 
-  login(form: FormGroup){
-    try{
-      let currentUser = this.swallowService.userLogin(form.value.email, form.value.password);
-      if(currentUser){
-        let navExtras: NavigationExtras = {
+  login(form: FormGroup) {
+    try {
+      const currentUser = this.swallowService.userLogin(form.value.email, form.value.password);
+      if (currentUser) {
+        const navExtras: NavigationExtras = {
         };
         this.router.navigate(['/'], navExtras);
       }
-    }catch(e){
+    } catch (e) {
       console.log(e);
     }
   }

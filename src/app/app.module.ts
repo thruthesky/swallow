@@ -11,10 +11,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-import { ForumComponent } from './pages/forum/forum.component';
+// import { ForumComponent } from './pages/forum/forum.component';
 
 @NgModule({
-  declarations: [AppComponent, ForumComponent],
+  declarations: [AppComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
