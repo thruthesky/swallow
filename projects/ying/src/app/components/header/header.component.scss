@@ -1,3 +1,7 @@
 .active {
-    background-color: rgb(46, 0, 107);
+    border-bottom: 2px white solid;
 }
+
+.spacer {
+    flex: 1 1 auto;
+} 

@@ -13,11 +13,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   async logout() {
-    const isLoggedOut = this.auth.userLogout().catch(e => {
-      alert(e.message)
-    })
-    if (isLoggedOut) {
-      this.router.navigateByUrl('')
+    const loggedOut = await this.auth.userLogout()
+    if (loggedOut === void 0) {
+      return this.router.navigateByUrl('')
     }
   }
 }

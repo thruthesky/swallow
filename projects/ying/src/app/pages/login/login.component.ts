@@ -12,24 +12,15 @@ import { MessageService } from '../../shared/services/message.service'
 })
 export class LoginComponent implements OnInit {
   action = true
-
   userForm: User = {}
 
   constructor(
     public auth: AuthService,
     public message: MessageService,
     public router: Router
-  ) {
-    //
-  }
+  ) {}
 
-  ngOnInit() {
-    if (this.auth.currentUser) {
-      console.log(this.auth.currentUser.email)
-    } else {
-      console.log('no user')
-    }
-  }
+  ngOnInit() {}
 
   gender(g) {
     this.userForm.gender = g
@@ -38,26 +29,30 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     if (this.action) {
       // login
-      const isloggedin = await this.auth
+      const loggedIn = await this.auth
         .userLogin(this.userForm.email, this.userForm.password)
         .catch(e => {
           alert(e.message)
         })
-      if (isloggedin) {
+      if (loggedIn) {
         this.router.navigateByUrl('home')
-        alert('Logged in!')
       }
     } else {
       // Register
+
+      this.userForm.birthday = new Date(
+        this.userForm.birthday
+      ).toLocaleDateString()
+
       const isRegistered = await this.auth
         .userRegister(this.userForm)
         .catch(e => {
           alert(e.message)
         })
       if (isRegistered) {
-        alert('Account Registered!')
         this.action = true
       }
+      console.log(this.userForm)
     }
   }
 }

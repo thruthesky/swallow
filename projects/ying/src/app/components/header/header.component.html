@@ -1,13 +1,25 @@
 <mat-toolbar color="primary">
-  <nav class="nav">
-    <!-- to be removed after finalizing user login / signup function -->
-    <button *ngIf="!auth.isLoggedIn" mat-button>
-      Login
-    </button>
+  <!-- to be removed after finalizing user login / signup function -->
+  <!-- <button *ngIf="!auth.isLoggedIn" mat-button>
+            Login
+          </button> -->
 
-    <!-- must not be visible when someone is not logged in -->
-    <button *ngIf="auth.isLoggedIn" mat-button [routerLink]="[ '/home' ]" routerLinkActive="active">Home</button>
-    <button *ngIf="auth.isLoggedIn" mat-button [routerLink]="[ '/forums' ]" routerLinkActive="active">Forums</button>
-    <button *ngIf="auth.isLoggedIn" mat-button class="float-right" (click)="logout()">Logout</button>
-  </nav>
+  <!-- must only be visible if a user is logged in -->
+
+  <button *ngIf="auth.isLoggedIn" mat-button [routerLink]="[ '/home' ]" routerLinkActive="active">Home</button>
+  <button *ngIf="auth.isLoggedIn" mat-button [routerLink]="[ '/forum' ]" routerLinkActive="active">Forums</button>
+  <span class="spacer"></span>
+
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="auth.isLoggedIn">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="[ '/profile' ]">
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <span>Logout</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

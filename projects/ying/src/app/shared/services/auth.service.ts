@@ -17,18 +17,26 @@ import { Subject } from 'rxjs'
 import { DatabaseService } from './database.service'
 import { MessageService } from './message.service'
 
+import { Router } from '@angular/router'
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   // typings
+
+  User: User
+  currentUserUid: string
+  checker = false
+
   auth: firebase.auth.Auth
   authChange: Subject<firebase.User> = new Subject<firebase.User>()
 
   constructor(
     public afAuth: AngularFireAuth,
     public dbService: DatabaseService,
-    public msgService: MessageService
+    public msgService: MessageService,
+    public router: Router
   ) {
     this.auth = afAuth.auth
     this.auth.onAuthStateChanged(user => this.authChange.next(user))
@@ -37,38 +45,36 @@ export class AuthService {
   /**
    * @method currentUser
    *
-   * @desc - returns the current logged user
+   * @desc returns the current logged user, might be null if non
    */
   get currentUser(): firebase.UserInfo {
-    return this.afAuth.auth.currentUser
+    return this.auth.currentUser
   }
 
   /**
-   * @todo need test
+   * @method isLoggedIn
+   *
+   * @desc return true if current user is logged in false if none or null
    */
   get isLoggedIn(): boolean {
-    return !!this.currentUser
-  }
-
-  /**
-   * @todo test
-   */
-  get isLoggedOut() {
-    return !this.isLoggedIn
-  }
-
-  /**
-   * @method myUid
-   *
-   * @desc - Returns currently login user's uid or null.
-   */
-  get myUid(): string {
-    if (this.currentUser) {
-      return this.currentUser.uid
-    } else {
-      return null
+    if (this.currentUser !== null) {
+      return true
     }
+    return false
   }
+
+  // /**
+  //  * @method myUid
+  //  *
+  //  * @desc - Returns currently logged in user's uid, null if not logged in
+  //  */
+  // get myUid(): string {
+  //   if (this.currentUser) {
+  //     return this.currentUser.uid
+  //   } else {
+  //     return null
+  //   }
+  // }
 
   /**
    * @method Register
@@ -77,8 +83,6 @@ export class AuthService {
    *
    */
   public async userRegister(user: User): Promise<firebase.UserInfo> {
-    // console.log('userRegister() => ', user)
-
     if (user === void 0) {
       console.log('user is void')
       throw this.msgService.error(ERROR_EMPTY_INPUT, 'User object is empty.')
@@ -104,15 +108,12 @@ export class AuthService {
     )
 
     const userData: User = Object.assign({}, user)
-    // delete userData['email'];
     delete userData['password']
 
     userData.uid = re.user.uid
 
     const ref = this.dbService.colUsers.doc(userData.uid)
-    console.log('ref: ', ref.ref.path)
 
-    // console.log('userData: ', userData);
     await ref.set(userData)
 
     return re.user
@@ -174,13 +175,21 @@ export class AuthService {
     return await this.userGet(this.currentUser.uid)
   }
 
+  /**
+   * @method userGet
+   *
+   * @param uid
+   *
+   * @desc fetch a user data of given user ID
+   * can only be used for current user data fetching
+   */
   async userGet(uid: string): Promise<User> {
     return await (<any>this.dbService
       .docUser(uid)
       .ref.get()
       .then(doc => {
         if (doc.exists) {
-          return doc.data()
+          return (this.User = doc.data())
         } else {
           return null
         }

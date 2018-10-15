@@ -14,7 +14,7 @@ import { HeaderComponent } from './components/header/header.component'
 
 import { environment } from '../environments/environment'
 import { MaterialModule } from './shared/material/material.module'
-// import { AppService } from './service/app.service'
+import { AuthService } from './shared/services/auth.service'
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -28,7 +28,7 @@ import { MaterialModule } from './shared/material/material.module'
     AngularFirestoreModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

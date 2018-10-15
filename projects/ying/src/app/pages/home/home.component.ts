@@ -10,9 +10,5 @@ import { Router } from '@angular/router'
 export class HomeComponent implements OnInit {
   constructor(public auth: AuthService, public router: Router) {}
 
-  ngOnInit() {
-    if (!this.auth.currentUser) {
-      this.router.navigateByUrl('')
-    }
-  }
+  ngOnInit() {}
 }

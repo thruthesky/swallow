@@ -1,5 +1,5 @@
-<div class="mt-5">
-  <div class="col-md-5 mx-auto">
+<div class="my-5">
+  <div class="col-md-4 mx-auto">
     <div class="card">
       <div class="card-header">
         <p class="text-center">
@@ -11,10 +11,6 @@
 
       <div class="card-body form" (ngSubmit)="onSubmit()">
 
-        <mat-form-field *ngIf="!action">
-          <input matInput name="name" matInput placeholder="Name" [(ngModel)]="userForm.name">
-        </mat-form-field>
-
         <mat-form-field>
           <input matInput placeholder="E-Mail" [(ngModel)]="userForm.email">
         </mat-form-field>
@@ -23,9 +19,35 @@
           <input matInput placeholder="Password" [(ngModel)]="userForm.password">
         </mat-form-field>
 
-        <div class="p-3 mx-auto form-option text-center" *ngIf="!action">
-          <mat-radio-button class="mx-2" (click)="gender('M')" checked>Male</mat-radio-button>
-          <mat-radio-button class="mx-2" (click)="gender('F')">Female</mat-radio-button>
+        <div *ngIf="!action">
+
+          <mat-form-field>
+            <input matInput matInput placeholder="Name" [(ngModel)]="userForm.name">
+          </mat-form-field>
+          <div class="p-3 mx-auto form-option text-center">
+            <mat-radio-button class="m-2" (click)="gender('M')" checked>Male</mat-radio-button>
+            <mat-radio-button class="m-2" (click)="gender('F')">Female</mat-radio-button>
+          </div>
+
+          <mat-form-field>
+            <input matInput matInput placeholder="Nickname" [(ngModel)]="userForm.nickname">
+            <mat-hint>Optional</mat-hint>
+          </mat-form-field>
+
+          <p>
+            <mat-form-field>
+              <input matInput [matDatepicker]="dp3" placeholder="Birtdate" disabled [(ngModel)]="userForm.birthday">
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+              <mat-hint>Optional</mat-hint>
+            </mat-form-field>
+          </p>
+
+          <mat-form-field>
+            <input matInput matInput placeholder="Mobile Number" [(ngModel)]="userForm.mobile">
+            <mat-hint>Optional</mat-hint>
+          </mat-form-field>
+
         </div>
 
       </div>
