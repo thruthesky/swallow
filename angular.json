@@ -22,7 +22,11 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.json"
+            ],
             "styles": [
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
@@ -47,7 +51,8 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true
             },
             "jaeho": {
               "fileReplacements": [
@@ -126,14 +131,23 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.json"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -158,7 +172,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -182,8 +198,14 @@
             "main": "projects/jaeho/src/main.ts",
             "polyfills": "projects/jaeho/src/polyfills.ts",
             "tsConfig": "projects/jaeho/tsconfig.app.json",
-            "assets": ["projects/jaeho/src/favicon.ico", "projects/jaeho/src/assets"],
-            "styles": ["projects/jaeho/src/styles.scss"],
+            "assets": [
+              "projects/jaeho/src/favicon.ico",
+              "projects/jaeho/src/assets",
+              "projects/jaeho/src/manifest.json"
+            ],
+            "styles": [
+              "projects/jaeho/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -202,7 +224,8 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true
             }
           }
         },
@@ -230,16 +253,27 @@
             "polyfills": "projects/jaeho/src/polyfills.ts",
             "tsConfig": "projects/jaeho/tsconfig.spec.json",
             "karmaConfig": "projects/jaeho/karma.conf.js",
-            "styles": ["projects/jaeho/src/styles.scss"],
+            "styles": [
+              "projects/jaeho/src/styles.scss"
+            ],
             "scripts": [],
-            "assets": ["projects/jaeho/src/favicon.ico", "projects/jaeho/src/assets"]
+            "assets": [
+              "projects/jaeho/src/favicon.ico",
+              "projects/jaeho/src/assets",
+              "projects/jaeho/src/manifest.json"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/jaeho/tsconfig.app.json", "projects/jaeho/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/jaeho/tsconfig.app.json",
+              "projects/jaeho/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -264,7 +298,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "projects/jaeho-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -307,8 +343,13 @@
             "main": "projects/bogz/src/main.ts",
             "polyfills": "projects/bogz/src/polyfills.ts",
             "tsConfig": "projects/bogz/tsconfig.app.json",
-            "assets": ["projects/bogz/src/favicon.ico", "projects/bogz/src/assets"],
-            "styles": ["projects/bogz/src/styles.scss"],
+            "assets": [
+              "projects/bogz/src/favicon.ico",
+              "projects/bogz/src/assets"
+            ],
+            "styles": [
+              "projects/bogz/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -355,16 +396,26 @@
             "polyfills": "projects/bogz/src/polyfills.ts",
             "tsConfig": "projects/bogz/tsconfig.spec.json",
             "karmaConfig": "projects/bogz/karma.conf.js",
-            "styles": ["projects/bogz/src/styles.scss"],
+            "styles": [
+              "projects/bogz/src/styles.scss"
+            ],
             "scripts": [],
-            "assets": ["projects/bogz/src/favicon.ico", "projects/bogz/src/assets"]
+            "assets": [
+              "projects/bogz/src/favicon.ico",
+              "projects/bogz/src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/bogz/tsconfig.app.json", "projects/bogz/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/bogz/tsconfig.app.json",
+              "projects/bogz/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -389,7 +440,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "projects/bogz-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

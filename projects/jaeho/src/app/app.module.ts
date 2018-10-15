@@ -11,6 +11,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FirehouseModule } from 'projects/modules/firehouse/firehouse.module';
 import { FirehouseService } from 'projects/modules/firehouse/firehouse.service';
 import { FirehouseTestService } from 'projects/modules/firehouse/firehouse.test.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FirehouseTestService } from 'projects/modules/firehouse/firehouse.test.
     AngularFirestoreModule,
     AngularFireAuthModule,
     AppRoutingModule,
-    FirehouseModule
+    FirehouseModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

@@ -11,6 +11,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // import { ForumComponent } from './pages/forum/forum.component';
 
 @NgModule({
@@ -23,7 +24,7 @@ import { environment } from '../environments/environment';
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule // imports firebase/auth, only needed for auth features,
+    AngularFireAuthModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) // imports firebase/auth, only needed for auth features,
   ],
   providers: [],
   bootstrap: [AppComponent]
